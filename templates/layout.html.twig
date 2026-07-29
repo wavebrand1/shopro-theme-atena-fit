@@ -3,8 +3,10 @@
 {% block site_header %}
 <header class="atena-header">
     <div class="atena-container atena-header__inner">
+        {% set configured_logo = shopro_setting('site_logo') %}
+        {% set atena_fallback_logo = asset('bundles/shoprothemeatenafit/atena-fit-logo.svg') %}
         <a class="atena-brand" href="{{ path('app_home') }}" aria-label="Atena Fit — strona główna">
-            <img src="{{ asset('bundles/shoprothemeatenafit/atena-fit-logo.svg') }}" alt="Atena Fit — siłownia Trzciana">
+            <img src="{{ configured_logo ?: atena_fallback_logo }}" alt="{{ shopro_setting('site_name', 'Atena Fit') }}"{% if configured_logo %} onerror="this.onerror=null;this.src='{{ atena_fallback_logo|e('js') }}'"{% endif %}>
         </a>
         <nav class="atena-nav" aria-label="{{ shopro_trans('front.main_menu') }}">
             {% set header_menu = shopro_menu(1) %}
