@@ -1,8 +1,8 @@
 {% set default_screens = [
-    { image: asset('bundles/shoprothemeatenafit/atena-app-membership-default.png'), alt: 'Aplikacja Atena Fit — moje karnety' },
-    { image: asset('bundles/shoprothemeatenafit/atena-app-entry-default.png'), alt: 'Aplikacja Atena Fit — mobilny kod wejścia' },
-    { image: asset('bundles/shoprothemeatenafit/atena-app-shop-default.png'), alt: 'Aplikacja Atena Fit — sklep karnetów' },
-    { image: asset('bundles/shoprothemeatenafit/atena-app-statistics-default.png'), alt: 'Aplikacja Atena Fit — statystyki aktywności' }
+    { image: asset('bundles/shoprothemeatenafit/atena-app-screen-membership-default.png'), alt: 'Aplikacja Atena Fit — moje karnety' },
+    { image: asset('bundles/shoprothemeatenafit/atena-app-screen-entry-default.png'), alt: 'Aplikacja Atena Fit — mobilny kod wejścia' },
+    { image: asset('bundles/shoprothemeatenafit/atena-app-screen-shop-default.png'), alt: 'Aplikacja Atena Fit — sklep karnetów' },
+    { image: asset('bundles/shoprothemeatenafit/atena-app-screen-statistics-default.png'), alt: 'Aplikacja Atena Fit — statystyki aktywności' }
 ] %}
 {% set screens = block.items|default([]) %}
 {% set default_benefits = [
@@ -43,7 +43,14 @@
             {% for fallback in default_screens %}
                 {% set screen = screens[loop.index0]|default({}) %}
                 <figure class="atena-app__screen">
-                    <img src="{{ screen.image|default(fallback.image) }}" alt="{{ screen.alt|default(fallback.alt) }}" loading="lazy">
+                    <div class="atena-phone">
+                        <div class="atena-phone__viewport">
+                            <img class="atena-phone__display" src="{{ screen.image|default(fallback.image) }}" alt="{{ screen.alt|default(fallback.alt) }}" loading="lazy">
+                        </div>
+                        <span class="atena-phone__island" aria-hidden="true"></span>
+                        <span class="atena-phone__side atena-phone__side--left" aria-hidden="true"></span>
+                        <span class="atena-phone__side atena-phone__side--right" aria-hidden="true"></span>
+                    </div>
                 </figure>
             {% endfor %}
         </div>

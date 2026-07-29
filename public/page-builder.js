@@ -114,7 +114,7 @@ window.ShoproThemeComponents = {
                     {label: 'Tekst App Store', key: 'appStoreLabel', type: 'text'}, {label: 'Adres Google Play', key: 'googlePlayUrl', type: 'text'},
                     {label: 'Mały tekst Google Play', key: 'googlePlayOverline', type: 'text'}, {label: 'Tekst Google Play', key: 'googlePlayLabel', type: 'text'}
                 ],
-                itemFields: [{label: 'Mockup ekranu telefonu', key: 'image', type: 'media'}, {label: 'Opis alternatywny', key: 'alt', type: 'text'}],
+                itemFields: [{label: 'Zrzut ekranu aplikacji', key: 'image', type: 'media'}, {label: 'Opis alternatywny', key: 'alt', type: 'text'}],
                 normalizeData(data) {
                     const defaults = this.defaults.items;
                     data.items = defaults.map((screen, index) => ({...screen, ...(data.items[index] || {})}));
