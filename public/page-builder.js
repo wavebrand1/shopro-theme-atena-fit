@@ -62,7 +62,11 @@ window.ShoproThemeComponents = {
         ],
         normalizeData(data) {
             const defaults = this.defaults.items;
-            data.items = defaults.map((step, index) => ({...step, ...(data.items[index] || {})}));
+            const oldTexts = ['Pobierz aplikację Atena Fit.', 'Zarejestruj się.', 'Wybierz pakiet.', 'Otwórz drzwi aplikacją.'];
+            data.items = defaults.map((step, index) => {
+                const stored = data.items[index] || {};
+                return {...step, ...stored, ...(oldTexts.includes(stored.text) ? {text: step.text} : {})};
+            });
         },
         defaults: {
             anchor: 'jak-zaczac',

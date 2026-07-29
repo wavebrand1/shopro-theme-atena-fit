@@ -8,6 +8,10 @@
 {% set steps = [] %}
 {% for default_step in default_steps %}
     {% set stored_step = stored_steps[loop.index0]|default({}) %}
+    {# Upgrade values stored by the first, simplified version of this component. #}
+    {% if stored_step.text|default('') in ['Pobierz aplikację Atena Fit.', 'Zarejestruj się.', 'Wybierz pakiet.', 'Otwórz drzwi aplikacją.'] %}
+        {% set stored_step = stored_step|merge({text: default_step.text}) %}
+    {% endif %}
     {% set steps = steps|merge([default_step|merge(stored_step)]) %}
 {% endfor %}
 {% set default_image = asset('bundles/shoprothemeatenafit/atena-steps-default.png') %}
