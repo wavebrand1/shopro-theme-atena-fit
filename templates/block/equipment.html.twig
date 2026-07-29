@@ -1,1 +1,40 @@
-<section class="atena-section atena-equipment"><div class="atena-container"><h2>{{ block.heading|default('Sprzęt') }}</h2><div class="atena-equipment__grid">{% for item in block.items|default([]) %}<article>{% if item.image|default %}<img src="{{ item.image }}" alt="" loading="lazy">{% endif %}<h3>{{ item.name|default('') }}</h3><p>{{ item.text|default('') }}</p></article>{% endfor %}</div></div></section>
+{% set defaults = [
+    { name: 'Hammer Strength Chest Press', text: 'Maszyna do wyciskania na klatkę piersiową', image: asset('bundles/shoprothemeatenafit/atena-equipment-chestpress-default.png') },
+    { name: 'Technogym Run Personal', text: 'Bieżnia elektromagnetyczna', image: asset('bundles/shoprothemeatenafit/atena-equipment-treadmill-default.png') },
+    { name: 'Matrix Lat Pulldown', text: 'Maszyna do ściągania drążka górnego', image: asset('bundles/shoprothemeatenafit/atena-equipment-pulldown-default.png') },
+    { name: 'Life Fitness Squat Rack', text: 'Klatka do przysiadów z asekuracją', image: asset('bundles/shoprothemeatenafit/atena-equipment-squatrack-default.png') },
+    { name: 'Concept2 RowErg', text: 'Wioślarz powietrzny', image: asset('bundles/shoprothemeatenafit/atena-equipment-rower-default.png') }
+] %}
+{% set items = block.items|default([]) %}
+{% set total = defaults|length %}
+{% if items|length > total %}{% set total = items|length %}{% endif %}
+
+<section class="atena-equipment"{% if block.anchor|default %} id="{{ block.anchor }}"{% endif %}>
+    <div class="atena-equipment__intro">
+        <h2>{{ block.heading|default('Sprzęt') }}<span aria-hidden="true"></span></h2>
+        <p>{{ block.description|default('Najwyższej klasy urządzenia od najlepszych marek.') }}</p>
+        <a class="atena-equipment__button" href="{{ block.url|default('#kontakt') }}">
+            {{ block.buttonLabel|default('Zobacz wszystkie sprzęty') }} <span aria-hidden="true">›</span>
+        </a>
+    </div>
+
+    <div class="atena-carousel atena-equipment__carousel" data-atena-carousel aria-label="{{ block.heading|default('Sprzęt') }}">
+        <button class="atena-carousel__control atena-carousel__control--previous" type="button" data-atena-carousel-previous aria-label="Poprzednie urządzenia">‹</button>
+        <div class="atena-carousel__viewport" data-atena-carousel-viewport tabindex="0">
+            <div class="atena-carousel__track">
+                {% for index in 0..(total - 1) %}
+                    {% set fallback = defaults[index]|default({ name: '', text: '', image: '' }) %}
+                    {% set item = items[index]|default({}) %}
+                    <article class="atena-equipment__card">
+                        <div class="atena-equipment__image">
+                            <img src="{{ item.image|default(fallback.image) }}" alt="{{ item.name|default(fallback.name) }}" loading="lazy">
+                        </div>
+                        <h3>{{ item.name|default(fallback.name) }}</h3>
+                        <p>{{ item.text|default(fallback.text) }}</p>
+                    </article>
+                {% endfor %}
+            </div>
+        </div>
+        <button class="atena-carousel__control atena-carousel__control--next" type="button" data-atena-carousel-next aria-label="Następne urządzenia">›</button>
+    </div>
+</section>
