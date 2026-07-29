@@ -1,1 +1,40 @@
-<section class="atena-section atena-gallery"><div class="atena-container"><h2>{{ block.heading|default('Poznaj Atena Fit') }}</h2><div class="atena-gallery__grid">{% for item in block.items|default([]) %}<article{% if item.image|default %} style="background-image:url('{{ item.image|e('html_attr') }}')"{% endif %}><h3>{{ item.name|default('') }}</h3></article>{% endfor %}</div></div></section>
+{% set defaults = [
+    { name: 'Strefa siłowa', icon: 'strength', image: asset('bundles/shoprothemeatenafit/atena-zone-strength-default.png') },
+    { name: 'Strefa cardio', icon: 'cardio', image: asset('bundles/shoprothemeatenafit/atena-zone-cardio-default.png') },
+    { name: 'Strefa wolnych ciężarów', icon: 'weights', image: asset('bundles/shoprothemeatenafit/atena-zone-freeweights-default.png') },
+    { name: 'Strefa funkcjonalna', icon: 'functional', image: asset('bundles/shoprothemeatenafit/atena-zone-functional-default.png') }
+] %}
+{% set items = block.items|default([]) %}
+
+<section class="atena-club-zones"{% if block.anchor|default %} id="{{ block.anchor }}"{% endif %}>
+    <div class="atena-club-zones__intro">
+        <h2>{{ block.heading|default('Poznaj Atena Fit') }}<span aria-hidden="true"></span></h2>
+        <p>{{ block.description|default('Nowoczesna przestrzeń stworzona z myślą o Twoim komforcie i efektach.') }}</p>
+        <a class="atena-club-zones__button" href="{{ block.url|default('#kontakt') }}">
+            {{ block.buttonLabel|default('Zobacz więcej zdjęć') }} <span aria-hidden="true">›</span>
+        </a>
+    </div>
+
+    <div class="atena-club-zones__tiles">
+        {% for fallback in defaults %}
+            {% set item = items[loop.index0]|default({}) %}
+            {% set icon = item.icon|default(fallback.icon) %}
+            <article class="atena-club-zones__tile" style="background-image:url('{{ item.image|default(fallback.image)|e('html_attr') }}')">
+                <div class="atena-club-zones__tile-content">
+                    <span class="atena-club-zones__icon" aria-hidden="true">
+                        {% if icon == 'cardio' %}
+                            <svg viewBox="0 0 64 64"><path d="M32 53S8 39 8 22c0-7 5-12 12-12 5 0 9 3 12 8 3-5 7-8 12-8 7 0 12 5 12 12 0 17-24 31-24 31Z"/><path d="M17 31h10l4-8 5 16 4-8h8"/></svg>
+                        {% elseif icon == 'weights' %}
+                            <svg viewBox="0 0 64 64"><path d="M8 23v18M15 18v28M49 18v28M56 23v18M15 32h34"/><path d="M23 25v14M41 25v14"/></svg>
+                        {% elseif icon == 'functional' %}
+                            <svg viewBox="0 0 64 64"><path d="M22 54h20M24 54l3-21h10l3 21M24 33h16M28 23c0-5 2-8 4-8s4 3 4 8"/><path d="M20 28c0-8 5-14 12-14s12 6 12 14"/></svg>
+                        {% else %}
+                            <svg viewBox="0 0 64 64"><path d="M8 23v18M15 18v28M49 18v28M56 23v18M15 32h34"/><path d="M23 25v14M41 25v14"/></svg>
+                        {% endif %}
+                    </span>
+                    <h3>{{ item.name|default(fallback.name) }}</h3>
+                </div>
+            </article>
+        {% endfor %}
+    </div>
+</section>
