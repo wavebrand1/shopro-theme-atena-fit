@@ -1,5 +1,7 @@
 {% set default_image = asset('bundles/shoprothemeatenafit/atena-hero-default.png') %}
 {% set hero_image = block.image|default(default_image) %}
+{% set default_watermark = asset('bundles/shoprothemeatenafit/atena-fit-mark.svg') %}
+{% set watermark = block.watermark|default(default_watermark) %}
 {% set legacy_hero = block.headingLineOne is not defined and block.heading is defined %}
 
 <section class="atena-hero" style="--atena-hero-image:url('{{ hero_image|e('html_attr') }}')">
@@ -17,16 +19,19 @@
             {% if block.secondaryLabel|default %}<a class="atena-button atena-button--ghost" href="{{ block.secondaryUrl|default('#') }}">{{ block.secondaryLabel }} <i aria-hidden="true">›</i></a>{% endif %}
         </div>
         {% set benefits = block.items|default([]) %}
+        {% set benefit_icons = ['equipment', 'availability', 'people', 'target'] %}
         {% if benefits %}
             <div class="atena-hero__benefits">
                 {% for item in benefits %}
+                    {% set icon = item.icon|default(benefit_icons[loop.index0]) %}
+                    {% if icon not in benefit_icons %}{% set icon = benefit_icons[loop.index0] %}{% endif %}
                     <div>
-                        <span class="atena-hero__benefit-icon" aria-hidden="true">{{ item.icon|default('◉') }}</span>
+                        <img class="atena-hero__benefit-icon" src="{{ asset('bundles/shoprothemeatenafit/icons/' ~ icon ~ '.svg') }}" alt="" aria-hidden="true">
                         <strong>{{ item.title|default('') }}</strong>
                     </div>
                 {% endfor %}
             </div>
         {% endif %}
     </div>
-    <img class="atena-hero__mark" src="{{ asset('bundles/shoprothemeatenafit/atena-fit-mark.svg') }}" alt="" aria-hidden="true">
+    <img class="atena-hero__mark" src="{{ watermark }}" alt="" aria-hidden="true">
 </section>
