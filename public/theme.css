@@ -22,3 +22,31 @@
 .front-theme--atena_fit h1,.front-theme--atena_fit h2,.front-theme--atena_fit h3,.front-theme--atena_fit h4,.front-theme--atena_fit h5,.front-theme--atena_fit h6 { font-family:var(--atena-heading); font-weight:400; }
 .front-theme--atena_fit .atena-nav a,.front-theme--atena_fit .atena-button,.front-theme--atena_fit .atena-button--small span,.front-theme--atena_fit .atena-plan span,.front-theme--atena_fit .atena-plan a,.front-theme--atena_fit .atena-steps__grid p,.front-theme--atena_fit .atena-equipment p,.front-theme--atena_fit .atena-footer,.front-theme--atena_fit .atena-footer a { font-family:var(--atena-body); }
 .front-theme--atena_fit .atena-section h2,.front-theme--atena_fit .atena-plan strong,.front-theme--atena_fit .atena-gallery__grid h3 { font-family:var(--atena-heading); font-weight:400; }
+
+/* Pricing component — layout based on the Atena Fit visual specification. */
+.atena-pricing { padding:76px 0 38px; background:linear-gradient(180deg,#fff 0%,#fafbfc 100%); }
+.atena-pricing__heading { display:flex; align-items:flex-end; justify-content:space-between; gap:28px; }
+.atena-pricing__heading h2 { position:relative; margin:0; padding-right:54px; color:#0d0d0f; font-size:clamp(26px,2.4vw,38px); line-height:1; letter-spacing:-.035em; text-transform:uppercase; }
+.atena-pricing__heading h2::after { position:absolute; top:50%; right:0; width:34px; height:3px; background:var(--atena-red); content:''; transform:translateY(-50%); }
+.atena-pricing__heading p { margin:13px 0 0; color:#4d5058; font-size:13px; font-weight:500; }
+.atena-pricing__all { display:inline-flex; align-items:center; gap:14px; margin-bottom:4px; color:var(--atena-blue); font-family:var(--atena-body); font-size:12px; font-weight:800; text-decoration:none; text-transform:uppercase; white-space:nowrap; }
+.atena-pricing__all span { font-size:25px; font-weight:400; line-height:.5; }
+.atena-pricing__grid { grid-template-columns:repeat(4,minmax(0,1fr)); gap:30px; margin-top:42px; }
+.atena-pricing .atena-plan { display:flex; min-height:355px; flex-direction:column; align-items:center; padding:34px 28px 22px; border:1px solid #e4e7eb; border-radius:11px; background:#fff; box-shadow:0 7px 18px rgba(13,13,15,.06); text-align:center; }
+.atena-pricing .atena-plan--featured { border:2px solid #d6e3ff; box-shadow:0 8px 24px rgba(30,86,230,.16); }
+.atena-pricing .atena-plan__badge { position:absolute; top:-17px; left:50%; transform:translateX(-50%); padding:8px 17px; border-radius:7px; background:var(--atena-blue); box-shadow:0 4px 10px rgba(30,86,230,.24); color:#fff; font-family:var(--atena-body); font-size:10px; font-weight:800; letter-spacing:.02em; text-transform:uppercase; white-space:nowrap; }
+.atena-pricing .atena-plan h3 { min-height:48px; margin:0; color:#101115; font-size:18px; line-height:1.2; text-transform:uppercase; }
+.atena-pricing .atena-plan strong { margin:23px 0 20px; color:#050609; font-size:31px; line-height:1; letter-spacing:-.035em; }
+.atena-pricing .atena-plan p { min-height:40px; max-width:150px; margin:0; color:#5d6068; font-size:11px; font-weight:500; line-height:1.45; }
+.atena-plan__icon { width:27px; height:27px; margin:12px 0 18px; color:#989da6; }
+.atena-plan--featured .atena-plan__icon { color:var(--atena-blue); }
+.atena-pricing .atena-plan a { width:100%; margin-top:auto; padding:12px 10px; border:1px solid #dfe3e8; border-radius:5px; color:#15161a; font-family:var(--atena-body); font-size:11px; font-weight:800; letter-spacing:.01em; text-decoration:none; text-transform:uppercase; transition:.18s ease; }
+.atena-pricing .atena-plan a:hover { border-color:var(--atena-red); color:var(--atena-red); }
+.atena-pricing .atena-plan--featured a { border-color:var(--atena-blue); background:var(--atena-blue); color:#fff; box-shadow:0 5px 12px rgba(30,86,230,.23); }
+.atena-pricing .atena-plan--featured a:hover { background:#1548c7; color:#fff; }
+.atena-pricing__benefits { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:20px; margin-top:30px; }
+.atena-pricing__benefits > div { display:flex; align-items:center; justify-content:center; gap:12px; color:#61646b; font-size:12px; font-weight:500; text-align:center; }
+.atena-pricing__benefit-icon { display:grid; width:25px; height:25px; place-items:center; color:#757a83; font-size:23px; line-height:1; }
+@media(max-width:980px){.atena-pricing__grid{gap:16px}.atena-pricing .atena-plan{min-height:335px;padding-inline:16px}.atena-pricing__benefits{gap:10px}.atena-pricing__benefits>div{font-size:11px}}
+@media(max-width:720px){.atena-pricing{padding:55px 0 30px}.atena-pricing__heading{align-items:flex-start;flex-direction:column;gap:15px}.atena-pricing__grid{grid-template-columns:repeat(2,minmax(0,1fr));margin-top:30px}.atena-pricing__benefits{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:18px}}
+@media(max-width:430px){.atena-pricing__grid{grid-template-columns:1fr}.atena-pricing .atena-plan{min-height:310px}.atena-pricing__benefits{grid-template-columns:1fr}.atena-pricing__benefits>div{justify-content:flex-start;text-align:left}}

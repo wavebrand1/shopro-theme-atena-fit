@@ -1,1 +1,48 @@
-<section class="atena-section atena-pricing" id="cennik"><div class="atena-container"><h2>{{ block.heading|default('Cennik') }}</h2><p>{{ block.intro|default('') }}</p><div class="atena-pricing__grid">{% for plan in block.items|default([]) %}<article class="atena-plan{{ plan.badge|default ? ' atena-plan--featured' : '' }}">{% if plan.badge|default %}<span>{{ plan.badge }}</span>{% endif %}<h3>{{ plan.name|default('') }}</h3><strong>{{ plan.price|default('') }}</strong><p>{{ plan.description|default('') }}</p><a href="{{ plan.url|default('#') }}">Kup teraz</a></article>{% endfor %}</div></div></section>
+{% set default_plans = [
+    {name: 'Wejście jednorazowe', price: '25 zł', description: 'Jednorazowe wejście na siłownię', url: '#kontakt', buttonLabel: 'Kup teraz', icon: 'ticket'},
+    {name: 'Karnet 1 miesiąc', price: '99 zł / m-c', description: 'Nielimitowany dostęp przez 30 dni', url: '#kontakt', buttonLabel: 'Kup teraz', badge: 'Najpopularniejszy', icon: 'calendar'},
+    {name: 'Karnet 3 miesiące', price: '89 zł / m-c', description: 'Nielimitowany dostęp przez 90 dni', url: '#kontakt', buttonLabel: 'Kup teraz', icon: 'calendar'},
+    {name: 'Karnet 12 miesięcy', price: '69 zł / m-c', description: 'Nielimitowany dostęp przez 12 miesięcy', url: '#kontakt', buttonLabel: 'Kup teraz', icon: 'calendar'}
+] %}
+{% set plans = block.items|default([]) %}
+{% if plans is empty %}{% set plans = default_plans %}{% endif %}
+
+<section class="atena-section atena-pricing" id="{{ block.anchor|default('cennik') }}">
+    <div class="atena-container">
+        <header class="atena-pricing__heading">
+            <div>
+                <h2>{{ block.heading|default('Cennik') }}</h2>
+                <p>{{ block.intro|default('Prosto i transparentnie. Bez ukrytych kosztów.') }}</p>
+            </div>
+            {% if block.allPlansLabel|default %}<a class="atena-pricing__all" href="{{ block.allPlansUrl|default('#') }}">{{ block.allPlansLabel }} <span aria-hidden="true">›</span></a>{% endif %}
+        </header>
+
+        <div class="atena-pricing__grid">
+            {% for plan in plans %}
+                {% set icon = plan.icon|default('calendar') %}
+                <article class="atena-plan{{ plan.badge|default ? ' atena-plan--featured' : '' }}">
+                    {% if plan.badge|default %}<span class="atena-plan__badge">{{ plan.badge }}</span>{% endif %}
+                    <h3>{{ plan.name|default('') }}</h3>
+                    <strong>{{ plan.price|default('') }}</strong>
+                    <p>{{ plan.description|default('') }}</p>
+                    <svg class="atena-plan__icon" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+                        {% if icon == 'ticket' %}
+                            <path d="M6 8h20v5a3 3 0 0 0 0 6v5H6v-5a3 3 0 0 0 0-6V8Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M16 10v12" stroke="currentColor" stroke-width="1.8" stroke-dasharray="2 2"/>
+                        {% else %}
+                            <rect x="6" y="7" width="20" height="19" rx="3" stroke="currentColor" stroke-width="1.8"/><path d="M10 5v5m12-5v5M9 14h14m-10 5h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                        {% endif %}
+                    </svg>
+                    <a href="{{ plan.url|default('#') }}">{{ plan.buttonLabel|default(block.buttonLabel|default('Kup teraz')) }}</a>
+                </article>
+            {% endfor %}
+        </div>
+
+        {% set default_benefits = ['Bez umów i zobowiązań', 'Zamrażanie karnetu', 'Przenieś karnet na inną osobę', 'Dostęp 24/7'] %}
+        <div class="atena-pricing__benefits">
+            {% for index in 0..3 %}
+                {% set field = 'benefit' ~ (index + 1) %}
+                <div><span class="atena-pricing__benefit-icon" aria-hidden="true">{% if index == 0 %}◇{% elseif index == 1 %}✦{% elseif index == 2 %}♧{% else %}◴{% endif %}</span>{{ attribute(block, field)|default(default_benefits[index]) }}</div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
