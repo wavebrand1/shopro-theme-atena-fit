@@ -44,7 +44,39 @@ window.ShoproThemeComponents = {
         },
         defaults: {anchor: 'cennik', heading: 'Cennik', intro: 'Prosto i transparentnie. Bez ukrytych kosztów.', allPlansLabel: 'Zobacz wszystkie opcje', allPlansUrl: '#kontakt', buttonLabel: 'Kup teraz', benefit1: 'Bez umów i zobowiązań', benefit2: 'Zamrażanie karnetu', benefit3: 'Przenieś karnet na inną osobę', benefit4: 'Dostęp 24/7', items: [{name: 'Wejście jednorazowe', price: '25 zł', description: 'Jednorazowe wejście na siłownię', url: '#kontakt', buttonLabel: 'Kup teraz', icon: 'ticket'}, {name: 'Karnet 1 miesiąc', price: '99 zł / m-c', description: 'Nielimitowany dostęp przez 30 dni', url: '#kontakt', buttonLabel: 'Kup teraz', badge: 'Najpopularniejszy', icon: 'calendar'}, {name: 'Karnet 3 miesiące', price: '89 zł / m-c', description: 'Nielimitowany dostęp przez 90 dni', url: '#kontakt', buttonLabel: 'Kup teraz', icon: 'calendar'}, {name: 'Karnet 12 miesięcy', price: '69 zł / m-c', description: 'Nielimitowany dostęp przez 12 miesięcy', url: '#kontakt', buttonLabel: 'Kup teraz', icon: 'calendar'}]}
     },
-    atena_steps: {label: 'Jak zacząć', itemLabel: 'krok', fields: [{label: 'Nagłówek', key: 'heading', type: 'text'}, {label: 'Opis', key: 'intro', type: 'text'}, {label: 'Zdjęcie', key: 'image', type: 'media'}], itemFields: [{label: 'Nagłówek', key: 'title', type: 'text'}, {label: 'Opis', key: 'text', type: 'textarea'}], defaults: {heading: 'Jak zacząć?', intro: '4 proste kroki do Twojego pierwszego treningu.', items: [{title: 'Pobierz aplikację', text: 'Pobierz aplikację Atena Fit.'}, {title: 'Załóż konto', text: 'Zarejestruj się.'}, {title: 'Kup karnet', text: 'Wybierz pakiet.'}, {title: 'Wejdź i trenuj', text: 'Otwórz drzwi aplikacją.'}]}},
+    atena_steps: {
+        label: 'Jak zacząć',
+        itemLabel: 'krok',
+        fields: [
+            {label: 'Kotwica sekcji', key: 'anchor', type: 'text'},
+            {label: 'Nagłówek', key: 'heading', type: 'text'},
+            {label: 'Opis pod nagłówkiem', key: 'intro', type: 'text'},
+            {label: 'Grafika po prawej', key: 'image', type: 'media'},
+            {label: 'Opis alternatywny grafiki', key: 'imageAlt', type: 'text'}
+        ],
+        itemFields: [
+            {label: 'Nagłówek kroku', key: 'title', type: 'text'},
+            {label: 'Opis kroku', key: 'text', type: 'textarea'},
+            {label: 'Ikona', key: 'icon', type: 'select', options: [['Telefon / aplikacja', 'phone'], ['Użytkownik / konto', 'user'], ['Karta / płatność', 'card'], ['Drzwi / wejście', 'door']]},
+            {label: 'Kolor numeru', key: 'color', type: 'select', options: [['Czerwony', 'red'], ['Niebieski', 'blue']]}
+        ],
+        normalizeData(data) {
+            const defaults = this.defaults.items;
+            data.items = defaults.map((step, index) => ({...step, ...(data.items[index] || {})}));
+        },
+        defaults: {
+            anchor: 'jak-zaczac',
+            heading: 'Jak zacząć?',
+            intro: '4 proste kroki do Twojego pierwszego treningu.',
+            imageAlt: 'Aplikacja Atena Fit na telefonie',
+            items: [
+                {title: 'Pobierz aplikację', text: 'Pobierz aplikację Atena Fit z App Store lub Google Play.', icon: 'phone', color: 'red'},
+                {title: 'Załóż konto', text: 'Zarejestruj się w aplikacji i zweryfikuj swój numer telefonu.', icon: 'user', color: 'blue'},
+                {title: 'Kup karnet', text: 'Wybierz karnet i dokonaj płatności w aplikacji.', icon: 'card', color: 'red'},
+                {title: 'Wejdź i trenuj', text: 'Otwórz drzwi aplikacją i ciesz się treningiem!', icon: 'door', color: 'blue'}
+            ]
+        }
+    },
     atena_story: {label: 'Sekcja motywacyjna', itemLabel: 'motywacja', fields: [{label: 'Nadtytuł', key: 'eyebrow', type: 'text'}, {label: 'Nagłówek', key: 'heading', type: 'text'}, {label: 'Treść', key: 'content', type: 'richtext'}, {label: 'Zdjęcie', key: 'image', type: 'media'}, {label: 'Tekst przycisku', key: 'buttonLabel', type: 'text'}, {label: 'Adres przycisku', key: 'url', type: 'text'}], defaults: {eyebrow: 'Zrób pierwszy krok', heading: 'Każda zmiana zaczyna się od jednej decyzji.', content: '<p>Nie musisz być w formie, żeby zacząć.</p>', buttonLabel: 'Umów pierwszy trening', url: '#kontakt'}},
     atena_app: {label: 'Aplikacja mobilna', itemLabel: 'ekran', fields: [{label: 'Nadtytuł', key: 'eyebrow', type: 'text'}, {label: 'Nagłówek', key: 'heading', type: 'text'}, {label: 'Treść', key: 'content', type: 'richtext'}], itemFields: [{label: 'Zdjęcie ekranu', key: 'image', type: 'media'}, {label: 'Opis alternatywny', key: 'alt', type: 'text'}], defaults: {eyebrow: 'Aplikacja', heading: 'Wszystko w Twoim telefonie', content: '<p>Aplikacja Atena Fit daje Ci pełną kontrolę nad treningiem.</p>', items: []}},
     atena_gallery: {label: 'Strefy klubu', itemLabel: 'strefę', fields: [{label: 'Nagłówek', key: 'heading', type: 'text'}], itemFields: [{label: 'Nazwa', key: 'name', type: 'text'}, {label: 'Zdjęcie', key: 'image', type: 'media'}], defaults: {heading: 'Poznaj Atena Fit', items: [{name: 'Strefa siłowa'}, {name: 'Strefa cardio'}, {name: 'Strefa wolnych ciężarów'}, {name: 'Strefa funkcjonalna'}]}},

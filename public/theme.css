@@ -50,3 +50,29 @@
 @media(max-width:980px){.atena-pricing__grid{gap:16px}.atena-pricing .atena-plan{min-height:335px;padding-inline:16px}.atena-pricing__benefits{gap:10px}.atena-pricing__benefits>div{font-size:11px}}
 @media(max-width:720px){.atena-pricing{padding:55px 0 30px}.atena-pricing__heading{align-items:flex-start;flex-direction:column;gap:15px}.atena-pricing__grid{grid-template-columns:repeat(2,minmax(0,1fr));margin-top:30px}.atena-pricing__benefits{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:18px}}
 @media(max-width:430px){.atena-pricing__grid{grid-template-columns:1fr}.atena-pricing .atena-plan{min-height:310px}.atena-pricing__benefits{grid-template-columns:1fr}.atena-pricing__benefits>div{justify-content:flex-start;text-align:left}}
+
+/* "Jak zacząć" — editable four-step onboarding component. */
+.atena-steps { overflow:hidden; background:#fff; }
+.atena-steps__layout { display:grid; grid-template-columns:minmax(0,54%) minmax(380px,46%); min-height:430px; }
+.atena-steps__content { display:flex; justify-content:flex-end; padding:62px 42px 52px 0; }
+.atena-steps__content-inner { width:min(700px, calc(100% - 64px)); }
+.atena-steps__heading h2 { position:relative; margin:0; padding-right:55px; color:#0d0d0f; font-family:var(--atena-heading); font-size:clamp(25px,2.25vw,37px); font-weight:400; letter-spacing:-.035em; line-height:1; text-transform:uppercase; }
+.atena-steps__heading h2::after { position:absolute; top:50%; right:0; width:33px; height:3px; background:var(--atena-red); content:''; transform:translateY(-50%); }
+.atena-steps__heading p { margin:14px 0 0; color:#353840; font-size:14px; font-weight:600; }
+.atena-steps__flow { position:relative; display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:0; margin-top:45px; }
+.atena-steps__flow::before { position:absolute; top:18px; right:8%; left:8%; height:1px; background:#dadddf; content:''; }
+.atena-step { position:relative; z-index:1; min-width:0; padding:0 10px; color:#111217; text-align:center; }
+.atena-step:not(:last-child)::after { position:absolute; z-index:2; top:67px; right:-10px; color:#c8cbd0; content:'›'; font-family:Arial,sans-serif; font-size:36px; font-weight:300; line-height:1; }
+.atena-step__number { display:grid; width:34px; height:34px; margin:0 auto -10px; place-items:center; border:3px solid #fff; border-radius:50%; box-shadow:0 2px 5px rgba(13,13,15,.11); color:#fff; font-family:var(--atena-body); font-size:13px; font-weight:800; }
+.atena-step--red .atena-step__number { background:var(--atena-red); }
+.atena-step--blue .atena-step__number { background:var(--atena-blue); }
+.atena-step__icon { display:grid; width:94px; height:94px; margin:0 auto 24px; place-items:center; border:1px solid #e5e7ea; border-radius:50%; background:#fff; box-shadow:0 7px 18px rgba(13,13,15,.08); color:#1b1d22; }
+.atena-step__icon svg { width:41px; height:41px; }
+.atena-step h3 { min-height:34px; margin:0; font-family:var(--atena-body); font-size:12px; font-weight:800; line-height:1.25; text-transform:uppercase; }
+.atena-step p { max-width:132px; margin:12px auto 0; color:#62656d; font-size:11px; font-weight:500; line-height:1.5; }
+.atena-steps__visual { position:relative; min-height:430px; background:#f6f7f7; }
+.atena-steps__visual::before { position:absolute; z-index:1; top:0; bottom:0; left:0; width:14%; background:linear-gradient(90deg,#fff 0%,rgba(255,255,255,.55) 48%,transparent 100%); content:''; pointer-events:none; }
+.atena-steps__visual img { display:block; width:100%; height:100%; object-fit:cover; object-position:center right; }
+@media(max-width:1180px){.atena-steps__layout{grid-template-columns:minmax(0,58%) minmax(320px,42%)}.atena-steps__content{padding-right:28px}.atena-steps__content-inner{width:calc(100% - 42px)}.atena-step{padding-inline:6px}.atena-step__icon{width:80px;height:80px}.atena-step__icon svg{width:35px;height:35px}.atena-step:not(:last-child)::after{right:-9px}}
+@media(max-width:840px){.atena-steps__layout{grid-template-columns:1fr}.atena-steps__content{justify-content:center;padding:52px 0 40px}.atena-steps__content-inner{width:min(680px,calc(100% - 48px))}.atena-steps__visual{min-height:300px}.atena-steps__visual img{max-height:410px}.atena-steps__visual::before{width:100%;height:18%;background:linear-gradient(180deg,#fff,transparent)}}
+@media(max-width:540px){.atena-steps__content{padding-block:42px 34px}.atena-steps__content-inner{width:calc(100% - 30px)}.atena-steps__flow{grid-template-columns:repeat(2,minmax(0,1fr));gap:30px 10px;margin-top:35px}.atena-steps__flow::before{display:none}.atena-step:not(:last-child)::after{display:none}.atena-step__icon{width:76px;height:76px;margin-bottom:18px}.atena-step h3{font-size:11px}.atena-step p{font-size:10px}.atena-steps__visual{min-height:235px}}
