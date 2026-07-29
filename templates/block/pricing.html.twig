@@ -4,8 +4,12 @@
     {name: 'Karnet 3 miesiące', price: '89 zł / m-c', description: 'Nielimitowany dostęp przez 90 dni', url: '#kontakt', buttonLabel: 'Kup teraz', icon: 'calendar'},
     {name: 'Karnet 12 miesięcy', price: '69 zł / m-c', description: 'Nielimitowany dostęp przez 12 miesięcy', url: '#kontakt', buttonLabel: 'Kup teraz', icon: 'calendar'}
 ] %}
-{% set plans = block.items|default([]) %}
-{% if plans is empty %}{% set plans = default_plans %}{% endif %}
+{% set stored_plans = block.items|default([]) %}
+{% set plans = [] %}
+{% for default_plan in default_plans %}
+    {% set stored_plan = stored_plans[loop.index0]|default({}) %}
+    {% set plans = plans|merge([default_plan|merge(stored_plan)]) %}
+{% endfor %}
 
 <section class="atena-section atena-pricing" id="{{ block.anchor|default('cennik') }}">
     <div class="atena-container">
@@ -14,7 +18,7 @@
                 <h2>{{ block.heading|default('Cennik') }}</h2>
                 <p>{{ block.intro|default('Prosto i transparentnie. Bez ukrytych kosztów.') }}</p>
             </div>
-            {% if block.allPlansLabel|default %}<a class="atena-pricing__all" href="{{ block.allPlansUrl|default('#') }}">{{ block.allPlansLabel }} <span aria-hidden="true">›</span></a>{% endif %}
+            <a class="atena-pricing__all" href="{{ block.allPlansUrl|default('#kontakt') }}">{{ block.allPlansLabel|default('Zobacz wszystkie opcje') }} <span aria-hidden="true">›</span></a>
         </header>
 
         <div class="atena-pricing__grid">
