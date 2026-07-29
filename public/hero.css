@@ -41,7 +41,7 @@
 .atena-hero__benefits > div { display: flex; align-items: center; gap: 13px; min-width: 185px; max-width: 205px; padding: 0 22px; border-right: 1px solid rgba(255,255,255,.44); }
 .atena-hero__benefits > div:first-child { padding-left: 0; }
 .atena-hero__benefits > div:last-child { border: 0; }
-.atena-hero__benefit-icon { width: 43px; height: 43px; flex: 0 0 43px; object-fit: contain; }
+.atena-hero__benefit-icon { width: 43px; height: 43px; flex: 0 0 43px; color: #fff; }
 .atena-hero__benefits strong { max-width: 115px; font-family: Rajdhani, Arial, sans-serif; font-size: 15px; font-weight: 700; line-height: 1.05; text-transform: uppercase; }
 .atena-hero__mark { position: absolute; z-index: 1; top: 11%; right: 4.8%; width: min(23vw, 352px); height: auto; opacity: .78; filter: drop-shadow(0 6px 18px rgba(0,0,0,.3)); pointer-events: none; }
 

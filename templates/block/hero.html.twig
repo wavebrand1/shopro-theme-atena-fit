@@ -26,7 +26,17 @@
                     {% set icon = item.icon|default(benefit_icons[loop.index0]) %}
                     {% if icon not in benefit_icons %}{% set icon = benefit_icons[loop.index0] %}{% endif %}
                     <div>
-                        <img class="atena-hero__benefit-icon" src="{{ asset('bundles/shoprothemeatenafit/icons/' ~ icon ~ '.svg') }}" alt="" aria-hidden="true">
+                        <svg class="atena-hero__benefit-icon" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+                            {% if icon == 'equipment' %}
+                                <g stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5"><path d="M5 26v12m7-18v24m40-24v24m7-18v12M12 32h40M19 23v18m26-18v18"/><path d="M26 28v8m12-8v8"/></g>
+                            {% elseif icon == 'availability' %}
+                                <g stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5"><circle cx="32" cy="32" r="23"/><path d="M32 18v15l11 6M17 13l-5-5m35 5 5-5M12 28H6m52 0h-6"/></g><text x="32" y="30" fill="currentColor" font-family="Arial,sans-serif" font-size="12" font-weight="700" text-anchor="middle">24</text><text x="32" y="47" fill="currentColor" font-family="Arial,sans-serif" font-size="12" font-weight="700" text-anchor="middle">7</text>
+                            {% elseif icon == 'people' %}
+                                <g stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5"><circle cx="32" cy="17" r="7"/><circle cx="14" cy="25" r="6"/><circle cx="50" cy="25" r="6"/><path d="M20 52v-8c0-7 5-12 12-12s12 5 12 12v8M5 53v-7c0-6 4-10 10-10 2 0 4 .6 6 1.8M59 53v-7c0-6-4-10-10-10-2 0-4 .6-6 1.8"/></g>
+                            {% else %}
+                                <g stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.5"><circle cx="30" cy="34" r="22"/><circle cx="30" cy="34" r="14"/><circle cx="30" cy="34" r="5"/><path d="m35 29 20-20M45 9h10v10"/></g>
+                            {% endif %}
+                        </svg>
                         <strong>{{ item.title|default('') }}</strong>
                     </div>
                 {% endfor %}
