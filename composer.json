@@ -1,0 +1,8 @@
+{
+  "name": "wavebrand/shopro-theme-atena-fit",
+  "description": "Atena Fit front theme for Shopro 4",
+  "type": "symfony-bundle",
+  "license": "proprietary",
+  "require": {"php": ">=8.2", "symfony/framework-bundle": "^7.4"},
+  "autoload": {"psr-4": {"Wavebrand\\ShoproTheme\\AtenaFit\\": "src/"}}
+}

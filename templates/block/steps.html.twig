@@ -1,0 +1,1 @@
+<section class="atena-section atena-steps"><div class="atena-container"><h2>{{ block.heading|default('Jak zacząć?') }}</h2><p>{{ block.intro|default('') }}</p><div class="atena-steps__grid">{% for item in block.items|default([]) %}<article><b>{{ loop.index }}</b><h3>{{ item.title|default('') }}</h3><p>{{ item.text|default('') }}</p></article>{% endfor %}</div></div></section>

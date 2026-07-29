@@ -1,0 +1,25 @@
+{% extends 'cms/layout_base.html.twig' %}
+
+{% block site_header %}
+<header class="atena-header">
+    <div class="atena-container atena-header__inner">
+        {% include 'cms/_brand.html.twig' %}
+        <nav class="atena-nav" aria-label="{{ shopro_trans('front.main_menu') }}">
+            {% import 'cms/_menu.html.twig' as menu %}{% set header_menu = shopro_menu(1) %}
+            {% if header_menu %}{{ menu.render(header_menu) }}{% endif %}
+        </nav>
+        <a class="atena-button atena-button--small" href="#kontakt">{{ shopro_trans('front.start') }} <span>›</span></a>
+    </div>
+</header>
+{% endblock %}
+
+{% block site_footer %}
+<footer class="atena-footer">
+    <div class="atena-container atena-footer__grid">
+        <div>{% include 'cms/_brand.html.twig' %}<p>{{ shopro_setting('site_name', 'Atena Fit') }}</p></div>
+        <div>{% set footer_menu = shopro_menu(0) %}{% for item in footer_menu %}{% if item.url %}<a href="{{ item.url }}">{{ item.name }}</a>{% endif %}{% endfor %}</div>
+        <div><strong>{{ shopro_trans('front.contact') }}</strong><p>{{ shopro_setting('contact_email', '') }}</p></div>
+    </div>
+    <div class="atena-container atena-footer__bottom">© {{ 'now'|date('Y') }} Atena Fit</div>
+</footer>
+{% endblock %}
