@@ -3,12 +3,20 @@
 {% block site_header %}
 <header class="atena-header">
     <div class="atena-container atena-header__inner">
-        {% include 'cms/_brand.html.twig' %}
+        <a class="atena-brand" href="{{ path('app_home') }}" aria-label="Atena Fit — strona główna">
+            <img src="{{ asset('bundles/shoprothemeatenafit/atena-fit-logo.svg') }}" alt="Atena Fit — siłownia Trzciana">
+        </a>
         <nav class="atena-nav" aria-label="{{ shopro_trans('front.main_menu') }}">
-            {% import 'cms/_menu.html.twig' as menu %}{% set header_menu = shopro_menu(1) %}
-            {% if header_menu %}{{ menu.render(header_menu) }}{% endif %}
+            {% set header_menu = shopro_menu(1) %}
+            {% if header_menu %}
+                {% for item in header_menu %}
+                    {% if item.url %}<a href="{{ item.url }}" target="{{ item.target }}"{{ item.target == '_blank' ? ' rel="noopener noreferrer"' : '' }}>{{ item.name }}</a>{% endif %}
+                {% endfor %}
+            {% else %}
+                <a href="#cennik">Cennik</a><a href="#jak-zaczac">Jak zacząć?</a><a href="#aplikacja">Aplikacja</a><a href="#klub">Poznaj Atena Fit</a><a href="#sprzet">Sprzęt</a><a href="#kontakt">Kontakt</a>
+            {% endif %}
         </nav>
-        <a class="atena-button atena-button--small" href="#kontakt">{{ shopro_trans('front.start') }} <span>›</span></a>
+        <a class="atena-button atena-button--small" href="#kontakt">Zacznij teraz <span aria-hidden="true">›</span></a>
     </div>
 </header>
 {% endblock %}
