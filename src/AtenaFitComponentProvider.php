@@ -13,6 +13,7 @@ final class AtenaFitComponentProvider implements ThemePageBuilderComponentProvid
 
     public function components(): iterable
     {
+        yield new PageBuilderComponentDefinition('atena_homepage', null, 'Cała strona główna Atena Fit', 'Wstawia kompletny układ strony głównej z komponentami Atena Fit.', 'A', preset: true);
         yield new PageBuilderComponentDefinition('atena_hero', null, 'Hero Atena Fit', 'Pełnoekranowy baner treningowy.', 'A', template: '@ShoproThemeAtenaFit/block/hero.html.twig', htmlFields: ['content']);
         yield new PageBuilderComponentDefinition('atena_pricing', null, 'Cennik Atena Fit', 'Karty pakietów i karnetów.', 'C', template: '@ShoproThemeAtenaFit/block/pricing.html.twig');
         yield new PageBuilderComponentDefinition('atena_steps', null, 'Jak zacząć', 'Cztery kroki rozpoczęcia treningów.', '1', template: '@ShoproThemeAtenaFit/block/steps.html.twig');

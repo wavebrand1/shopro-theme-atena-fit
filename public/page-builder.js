@@ -18,3 +18,20 @@ window.ShoproThemeComponents = {
     atena_equipment: {label: 'Sprzęt', itemLabel: 'urządzenie', fields: [{label: 'Nagłówek', key: 'heading', type: 'text'}], itemFields: [{label: 'Nazwa', key: 'name', type: 'text'}, {label: 'Opis', key: 'text', type: 'textarea'}, {label: 'Zdjęcie', key: 'image', type: 'media'}], defaults: {heading: 'Sprzęt', items: [{name: 'Hammer Strength'}, {name: 'Technogym'}, {name: 'Matrix'}]}},
     atena_cta: {label: 'CTA Atena Fit', itemLabel: 'CTA', fields: [{label: 'Nagłówek', key: 'heading', type: 'text'}, {label: 'Treść', key: 'content', type: 'richtext'}, {label: 'Zdjęcie', key: 'image', type: 'media'}, {label: 'Tekst przycisku', key: 'buttonLabel', type: 'text'}, {label: 'Adres przycisku', key: 'url', type: 'text'}], defaults: {heading: 'Gotowy na zmianę?', content: '<p>Dołącz do Atena Fit i zacznij trenować już dziś.</p>', buttonLabel: 'Zacznij teraz', url: '#kontakt'}}
 };
+
+// Presets are intentionally data only. The Core builder creates fresh IDs and
+// uses each component's defaults, so a preset can safely be inserted many times.
+window.ShoproThemePresets = {
+    atena_homepage: {
+        sections: [
+            {container: 'full', components: ['atena_hero']},
+            {container: 'full', components: ['atena_pricing']},
+            {container: 'full', components: ['atena_steps']},
+            {container: 'full', components: ['atena_story']},
+            {container: 'full', components: ['atena_app']},
+            {container: 'full', components: ['atena_gallery']},
+            {container: 'full', components: ['atena_equipment']},
+            {container: 'full', components: ['atena_cta']}
+        ]
+    }
+};
