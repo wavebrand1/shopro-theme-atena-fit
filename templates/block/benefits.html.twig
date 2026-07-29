@@ -1,0 +1,10 @@
+{% set default_items = [
+    {title: 'Bez umów i zobowiązań', text: 'Kupujesz karnet wtedy, kiedy chcesz.', icon: 'shield'},
+    {title: 'Wszystko w aplikacji', text: 'Zakup, dostęp, historia i wiele więcej.', icon: 'phone'},
+    {title: 'Dla każdego', text: 'Niezależnie od wieku i poziomu zaawansowania.', icon: 'people'},
+    {title: 'Wygodny dojazd', text: 'Darmowy parking tuż przy siłowni.', icon: 'parking'}
+] %}
+{% set stored_items = block.items|default([]) %}
+{% set items = [] %}
+{% for item in default_items %}{% set items = items|merge([item|merge(stored_items[loop.index0]|default({}))]) %}{% endfor %}
+<section class="atena-benefits" id="{{ block.anchor|default('korzysci') }}"><div class="atena-container"><div class="atena-benefits__bar">{% for item in items %}<article><span class="atena-benefits__icon" aria-hidden="true">{% if item.icon|default == 'shield' %}♢{% elseif item.icon|default == 'phone' %}▯{% elseif item.icon|default == 'people' %}♧{% else %}Ⓟ{% endif %}</span><p><strong>{{ item.title|default('') }}</strong>{{ item.text|default('') }}</p></article>{% endfor %}</div></div></section>

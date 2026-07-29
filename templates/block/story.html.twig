@@ -1,1 +1,59 @@
-<section class="atena-section atena-story"><div class="atena-container atena-story__grid"><div><p class="atena-kicker">{{ block.eyebrow|default('') }}</p><h2>{{ block.heading|default('') }}</h2><div>{{ block.content|default('')|raw }}</div>{% if block.buttonLabel|default %}<a class="atena-button" href="{{ block.url|default('#') }}">{{ block.buttonLabel }} <span>›</span></a>{% endif %}</div>{% if block.image|default %}<img src="{{ block.image }}" alt="" loading="lazy">{% endif %}</div></section>
+{% set default_features = [
+    {title: 'Nowoczesny sprzęt', text: 'Strefa siłowa, cardio, funkcjonalna i więcej.', icon: 'equipment'},
+    {title: 'Przyjazna atmosfera', text: 'Bez presji, bez oceniania. Tu liczy się Ty.', icon: 'user'},
+    {title: 'Dostęp 24/7', text: 'Trenuj, kiedy chcesz. Zawsze, gdy masz czas.', icon: 'clock'}
+] %}
+{% set stored_features = block.items|default([]) %}
+{% set features = [] %}
+{% for feature in default_features %}
+    {% set features = features|merge([feature|merge(stored_features[loop.index0]|default({}))]) %}
+{% endfor %}
+{% set default_main_image = asset('bundles/shoprothemeatenafit/atena-story-main-default.png') %}
+{% set default_community_image = asset('bundles/shoprothemeatenafit/atena-story-community-default.png') %}
+{% set story_heading = block.heading|default('Każda zmiana zaczyna się od') %}
+{% if story_heading == 'Każda zmiana zaczyna się od jednej decyzji.' %}{% set story_heading = 'Każda zmiana zaczyna się od' %}{% endif %}
+{% set default_content = '<p>Niezależnie od tego, czy chcesz schudnąć, poprawić kondycję, zbudować siłę, wrócić do aktywności po długiej przerwie czy po prostu zadbać o swoje zdrowie — najtrudniejszy jest pierwszy krok.</p><p>W Atena Fit stworzyliśmy miejsce, do którego możesz wejść bez presji i trenować we własnym tempie. Nowoczesny sprzęt, komfortowa przestrzeń i prosty dostęp sprawiają, że możesz skupić się wyłącznie na swoim celu.</p>' %}
+{% set story_content = block.content|default(default_content) %}
+{% if story_content == '<p>Nie musisz być w formie, żeby zacząć.</p>' %}{% set story_content = default_content %}{% endif %}
+
+<section class="atena-story" id="{{ block.anchor|default('o-nas') }}">
+    <div class="atena-container atena-story__layout">
+        <div class="atena-story__copy">
+            <p class="atena-story__eyebrow">{{ block.eyebrow|default('Zrób pierwszy krok') }}</p>
+            <h2>{{ story_heading }} <em>{{ block.highlight|default('jednej decyzji.') }}</em></h2>
+            <div class="atena-story__lead">
+                <p>{{ block.lead|default('Nie musisz być w formie, żeby zacząć.') }}</p>
+                <p>{{ block.leadHighlight|default('Musisz zacząć, żeby zbudować formę.') }}</p>
+            </div>
+            <div class="atena-story__content">{{ story_content|raw }}</div>
+            <div class="atena-story__promise">
+                <span aria-hidden="true">♙</span>
+                <p>{{ block.promise|default('Za kilka miesięcy możesz wyglądać i czuć się') }} <strong>{{ block.promiseHighlight|default('zupełnie inaczej.') }}</strong> {{ block.promiseEnding|default('Wszystko zaczyna się od jednej wizyty.') }}</p>
+            </div>
+            <div class="atena-story__actions">
+                {% if block.buttonLabel|default %}<a class="atena-button" href="{{ block.url|default('#kontakt') }}">{{ block.buttonLabel }} <span>›</span></a>{% endif %}
+                <div class="atena-story__schedule"><span aria-hidden="true">▣</span><p><strong>{{ block.scheduleTitle|default('Trenujesz kiedy chcesz') }}</strong>{{ block.scheduleText|default('Dostęp 24/7, bez ograniczeń') }}</p></div>
+            </div>
+        </div>
+
+        <div class="atena-story__visuals">
+            <figure class="atena-story__main-image">
+                <img src="{{ block.image|default(default_main_image) }}" alt="{{ block.imageAlt|default('Trening w Atena Fit') }}" loading="lazy">
+                <figcaption><span class="atena-story__mark">A</span><strong>{{ block.cardLine1|default('Twoje cele.') }}<br>{{ block.cardLine2|default('Twoja droga.') }}</strong><i></i><strong>{{ block.cardLine3|default('My dajemy') }}<br><em>{{ block.cardHighlight|default('przestrzeń.') }}</em></strong></figcaption>
+            </figure>
+            <div class="atena-story__bottom-row">
+                <figure class="atena-story__community-image"><img src="{{ block.secondaryImage|default(default_community_image) }}" alt="{{ block.secondaryImageAlt|default('Społeczność Atena Fit') }}" loading="lazy"></figure>
+                <div class="atena-story__features">
+                    {% for feature in features %}
+                        <article>
+                            <span class="atena-story__feature-icon" aria-hidden="true">
+                                {% if feature.icon|default('equipment') == 'user' %}♙{% elseif feature.icon|default('equipment') == 'clock' %}◷{% else %}▰{% endif %}
+                            </span>
+                            <p><strong>{{ feature.title|default('') }}</strong>{{ feature.text|default('') }}</p>
+                        </article>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
