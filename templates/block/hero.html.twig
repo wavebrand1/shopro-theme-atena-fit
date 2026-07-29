@@ -1,8 +1,32 @@
-<section class="atena-hero"{% if block.image|default %} style="--atena-hero-image:url('{{ block.image|e('html_attr') }}')"{% endif %}>
+{% set default_image = asset('bundles/shoprothemeatenafit/atena-hero-default.png') %}
+{% set hero_image = block.image|default(default_image) %}
+{% set legacy_hero = block.headingLineOne is not defined and block.heading is defined %}
+
+<section class="atena-hero" style="--atena-hero-image:url('{{ hero_image|e('html_attr') }}')">
     <div class="atena-container atena-hero__content">
         <p class="atena-kicker">{{ block.eyebrow|default('Atena Fit') }}</p>
-        <h1>{{ block.heading|default('') }} <em>{{ block.accent|default('') }}</em></h1>
+        <h1>
+            <span>{{ legacy_hero ? 'Twoja' : block.headingLineOne|default('Twoja') }}</span>
+            <span>{{ legacy_hero ? 'przestrzeń.' : block.headingLineTwo|default('przestrzeń.') }}</span>
+            <em>{{ legacy_hero ? 'Twój trening.' : block.accent|default('Twój trening.') }}</em>
+            <b>{{ legacy_hero ? 'Twój cel.' : block.blueAccent|default('Twój cel.') }}</b>
+        </h1>
         <div class="atena-hero__copy">{{ block.content|default('')|raw }}</div>
-        <div class="atena-actions">{% if block.primaryLabel|default %}<a class="atena-button" href="{{ block.primaryUrl|default('#') }}">{{ block.primaryLabel }} <span>›</span></a>{% endif %}{% if block.secondaryLabel|default %}<a class="atena-button atena-button--ghost" href="{{ block.secondaryUrl|default('#') }}">{{ block.secondaryLabel }}</a>{% endif %}</div>
+        <div class="atena-actions">
+            {% if block.primaryLabel|default %}<a class="atena-button" href="{{ block.primaryUrl|default('#') }}">{{ block.primaryLabel }} <span aria-hidden="true">›</span></a>{% endif %}
+            {% if block.secondaryLabel|default %}<a class="atena-button atena-button--ghost" href="{{ block.secondaryUrl|default('#') }}">{{ block.secondaryLabel }} <i aria-hidden="true">›</i></a>{% endif %}
+        </div>
+        {% set benefits = block.items|default([]) %}
+        {% if benefits %}
+            <div class="atena-hero__benefits">
+                {% for item in benefits %}
+                    <div>
+                        <span class="atena-hero__benefit-icon" aria-hidden="true">{{ item.icon|default('◉') }}</span>
+                        <strong>{{ item.title|default('') }}</strong>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
     </div>
+    <img class="atena-hero__mark" src="{{ asset('bundles/shoprothemeatenafit/atena-fit-mark.svg') }}" alt="" aria-hidden="true">
 </section>

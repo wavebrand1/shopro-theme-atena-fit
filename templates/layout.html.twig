@@ -1,5 +1,10 @@
 {% extends 'cms/layout_base.html.twig' %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/shoprothemeatenafit/hero.css') }}">
+{% endblock %}
+
 {% block site_header %}
 <header class="atena-header">
     <div class="atena-container atena-header__inner">
