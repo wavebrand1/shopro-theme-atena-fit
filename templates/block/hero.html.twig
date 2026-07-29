@@ -18,8 +18,15 @@
             {% if block.primaryLabel|default %}<a class="atena-button" href="{{ block.primaryUrl|default('#') }}">{{ block.primaryLabel }} <span aria-hidden="true">›</span></a>{% endif %}
             {% if block.secondaryLabel|default %}<a class="atena-button atena-button--ghost" href="{{ block.secondaryUrl|default('#') }}">{{ block.secondaryLabel }} <i aria-hidden="true">›</i></a>{% endif %}
         </div>
-        {% set benefits = block.items|default([]) %}
         {% set benefit_icons = ['equipment', 'availability', 'people', 'target'] %}
+        {% set default_benefits = [
+            {icon: 'equipment', title: 'Nowoczesny sprzęt'},
+            {icon: 'availability', title: 'Dostęp 24/7'},
+            {icon: 'people', title: 'Trenuj sam lub z innymi'},
+            {icon: 'target', title: 'Skup się na celu'}
+        ] %}
+        {% set benefits = block.items|default([]) %}
+        {% if benefits is empty %}{% set benefits = default_benefits %}{% endif %}
         {% if benefits %}
             <div class="atena-hero__benefits">
                 {% for item in benefits %}

@@ -1,6 +1,6 @@
 window.ShoproThemeComponents = {
     atena_hero: {
-        label: 'Hero Atena Fit', itemLabel: 'Baner główny',
+        label: 'Baner główny', itemLabel: 'korzyść',
         fields: [
             {label: 'Nadtytuł', key: 'eyebrow', type: 'text'}, {label: 'Nagłówek — linia 1', key: 'headingLineOne', type: 'text'},
             {label: 'Nagłówek — linia 2', key: 'headingLineTwo', type: 'text'}, {label: 'Nagłówek czerwony', key: 'accent', type: 'text'},
@@ -9,7 +9,19 @@ window.ShoproThemeComponents = {
             {label: 'Adres przycisku głównego', key: 'primaryUrl', type: 'text'}, {label: 'Tekst drugiego przycisku', key: 'secondaryLabel', type: 'text'},
             {label: 'Adres drugiego przycisku', key: 'secondaryUrl', type: 'text'}
         ],
-        itemFields: [{label: 'Ikona', key: 'icon', type: 'select', options: [['Hantle', 'equipment'], ['Dostęp 24/7', 'availability'], ['Grupa osób', 'people'], ['Cel', 'target']]}, {label: 'Opis korzyści', key: 'title', type: 'text'}],
+        normalizeData(data) {
+            if (data.headingLineOne === undefined && data.heading !== undefined) {
+                if (String(data.heading).trim().toLowerCase() === 'twoja przestrzeń.') {
+                    data.headingLineOne = 'Twoja'; data.headingLineTwo = 'przestrzeń.';
+                } else {
+                    data.headingLineOne = data.heading; data.headingLineTwo = data.headingLineTwo ?? '';
+                }
+            }
+            if (data.blueAccent === undefined && String(data.accent || '').trim().toLowerCase() === 'twój trening. twój cel.') {
+                data.accent = 'Twój trening.'; data.blueAccent = 'Twój cel.';
+            }
+        },
+        itemFields: [{label: 'Ikona', key: 'icon', type: 'select', options: [['Hantle', 'equipment'], ['Dostęp 24/7', 'availability'], ['Grupa osób', 'people'], ['Cel', 'target']]}, {label: 'Tekst przy ikonie', key: 'title', type: 'text'}],
         defaults: {eyebrow: 'Atena Fit', headingLineOne: 'Twoja', headingLineTwo: 'przestrzeń.', accent: 'Twój trening.', blueAccent: 'Twój cel.', content: '<p>Korzystaj sam<br>lub z przyjaciółmi.</p><p><strong>Skup się na treningu.</strong></p>', primaryLabel: 'Zobacz ofertę', primaryUrl: '#cennik', secondaryLabel: 'Zobacz siłownię', secondaryUrl: '#klub', items: [{icon: 'equipment', title: 'Nowoczesny sprzęt'}, {icon: 'availability', title: 'Dostęp 24/7'}, {icon: 'people', title: 'Trenuj sam lub z innymi'}, {icon: 'target', title: 'Skup się na celu'}]}
     },
     atena_pricing: {label: 'Cennik Atena Fit', itemLabel: 'karnet', fields: [{label: 'Nagłówek', key: 'heading', type: 'text'}, {label: 'Opis', key: 'intro', type: 'text'}], itemFields: [{label: 'Nazwa', key: 'name', type: 'text'}, {label: 'Cena', key: 'price', type: 'text'}, {label: 'Opis', key: 'description', type: 'textarea'}, {label: 'Adres przycisku', key: 'url', type: 'text'}, {label: 'Wyróżnienie', key: 'badge', type: 'text'}], defaults: {heading: 'Cennik', intro: 'Prosto i transparentnie.', items: [{name: 'Wejście jednorazowe', price: '25 zł', description: 'Jednorazowe wejście na siłownię', url: '#kontakt'}, {name: 'Karnet miesięczny', price: '99 zł / m-c', description: 'Nielimitowany dostęp', url: '#kontakt', badge: 'Najpopularniejszy'}]}},
