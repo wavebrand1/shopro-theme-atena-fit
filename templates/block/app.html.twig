@@ -31,10 +31,12 @@
 
             <div class="atena-app__stores">
                 <a class="atena-store-badge" href="{{ block.appStoreUrl|default('#') }}"{% if block.appStoreUrl|default('') starts with 'http' %} target="_blank" rel="noopener noreferrer"{% endif %} aria-label="{{ block.appStoreLabel|default('Pobierz w App Store') }}">
-                    <img src="{{ asset('bundles/shoprothemeatenafit/badge-app-store.svg') }}" alt="{{ block.appStoreLabel|default('Pobierz w App Store') }}">
+                    <img class="atena-store-badge__icon" src="{{ asset('bundles/shoprothemeatenafit/appstore.svg') }}" alt="">
+                    <span class="atena-store-badge__copy"><small>{{ block.appStoreOverline|default('Pobierz w') }}</small><strong>{{ block.appStoreLabel|default('App Store') }}</strong></span>
                 </a>
                 <a class="atena-store-badge" href="{{ block.googlePlayUrl|default('#') }}"{% if block.googlePlayUrl|default('') starts with 'http' %} target="_blank" rel="noopener noreferrer"{% endif %} aria-label="{{ block.googlePlayLabel|default('Pobierz z Google Play') }}">
-                    <img src="{{ asset('bundles/shoprothemeatenafit/badge-google-play.png') }}" alt="{{ block.googlePlayLabel|default('Pobierz z Google Play') }}">
+                    <img class="atena-store-badge__icon" src="{{ asset('bundles/shoprothemeatenafit/googleplay.svg') }}" alt="">
+                    <span class="atena-store-badge__copy"><small>{{ block.googlePlayOverline|default('Pobierz z') }}</small><strong>{{ block.googlePlayLabel|default('Google Play') }}</strong></span>
                 </a>
             </div>
         </div>
