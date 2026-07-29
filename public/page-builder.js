@@ -100,7 +100,38 @@ window.ShoproThemeComponents = {
         normalizeData(data) { const defaults = this.defaults.items; data.items = defaults.map((item, index) => ({...item, ...(data.items[index] || {})})); },
         defaults: {anchor: 'o-nas', eyebrow: 'Zrób pierwszy krok', heading: 'Każda zmiana zaczyna się od', highlight: 'jednej decyzji.', lead: 'Nie musisz być w formie, żeby zacząć.', leadHighlight: 'Musisz zacząć, żeby zbudować formę.', content: '<p>Niezależnie od tego, czy chcesz schudnąć, poprawić kondycję, zbudować siłę, wrócić do aktywności po długiej przerwie czy po prostu zadbać o swoje zdrowie — najtrudniejszy jest pierwszy krok.</p><p>W Atena Fit stworzyliśmy miejsce, do którego możesz wejść bez presji i trenować we własnym tempie. Nowoczesny sprzęt, komfortowa przestrzeń i prosty dostęp sprawiają, że możesz skupić się wyłącznie na swoim celu.</p>', promise: 'Za kilka miesięcy możesz wyglądać i czuć się', promiseHighlight: 'zupełnie inaczej.', promiseEnding: 'Wszystko zaczyna się od jednej wizyty.', buttonLabel: 'Umów pierwszy trening', url: '#kontakt', scheduleTitle: 'Trenujesz kiedy chcesz', scheduleText: 'Dostęp 24/7, bez ograniczeń', imageAlt: 'Trening w Atena Fit', secondaryImageAlt: 'Społeczność Atena Fit', cardLine1: 'Twoje cele.', cardLine2: 'Twoja droga.', cardLine3: 'My dajemy', cardHighlight: 'przestrzeń.', items: [{title: 'Nowoczesny sprzęt', text: 'Strefa siłowa, cardio, funkcjonalna i więcej.', icon: 'equipment'}, {title: 'Przyjazna atmosfera', text: 'Bez presji, bez oceniania. Tu liczy się Ty.', icon: 'user'}, {title: 'Dostęp 24/7', text: 'Trenuj, kiedy chcesz. Zawsze, gdy masz czas.', icon: 'clock'}]}},
     atena_benefits: {label: 'Pas korzyści Atena Fit', itemLabel: 'korzyść', fields: [{label: 'Kotwica sekcji', key: 'anchor', type: 'text'}], itemFields: [{label: 'Tytuł', key: 'title', type: 'text'}, {label: 'Opis', key: 'text', type: 'textarea'}, {label: 'Ikona', key: 'icon', type: 'select', options: [['Tarcza', 'shield'], ['Telefon', 'phone'], ['Grupa osób', 'people'], ['Parking', 'parking']]}], normalizeData(data) { const defaults = this.defaults.items; data.items = defaults.map((item, index) => ({...item, ...(data.items[index] || {})})); }, defaults: {anchor: 'korzysci', items: [{title: 'Bez umów i zobowiązań', text: 'Kupujesz karnet wtedy, kiedy chcesz.', icon: 'shield'}, {title: 'Wszystko w aplikacji', text: 'Zakup, dostęp, historia i wiele więcej.', icon: 'phone'}, {title: 'Dla każdego', text: 'Niezależnie od wieku i poziomu zaawansowania.', icon: 'people'}, {title: 'Wygodny dojazd', text: 'Darmowy parking tuż przy siłowni.', icon: 'parking'}]}},
-    atena_app: {label: 'Aplikacja mobilna', itemLabel: 'ekran', fields: [{label: 'Nadtytuł', key: 'eyebrow', type: 'text'}, {label: 'Nagłówek', key: 'heading', type: 'text'}, {label: 'Treść', key: 'content', type: 'richtext'}], itemFields: [{label: 'Zdjęcie ekranu', key: 'image', type: 'media'}, {label: 'Opis alternatywny', key: 'alt', type: 'text'}], defaults: {eyebrow: 'Aplikacja', heading: 'Wszystko w Twoim telefonie', content: '<p>Aplikacja Atena Fit daje Ci pełną kontrolę nad treningiem.</p>', items: []}},
+            atena_app: {
+                label: 'Aplikacja mobilna', itemLabel: 'ekran telefonu',
+                fields: [
+                    {label: 'Kotwica sekcji', key: 'anchor', type: 'text'},
+                    {label: 'Nadtytuł', key: 'eyebrow', type: 'text'},
+                    {label: 'Nagłówek', key: 'heading', type: 'text'},
+                    {label: 'Opis', key: 'intro', type: 'textarea'},
+                    {label: 'Korzyść 1', key: 'benefit1', type: 'text'}, {label: 'Korzyść 2', key: 'benefit2', type: 'text'},
+                    {label: 'Korzyść 3', key: 'benefit3', type: 'text'}, {label: 'Korzyść 4', key: 'benefit4', type: 'text'},
+                    {label: 'Korzyść 5', key: 'benefit5', type: 'text'},
+                    {label: 'Adres App Store', key: 'appStoreUrl', type: 'text'}, {label: 'Mały tekst App Store', key: 'appStoreOverline', type: 'text'},
+                    {label: 'Tekst App Store', key: 'appStoreLabel', type: 'text'}, {label: 'Adres Google Play', key: 'googlePlayUrl', type: 'text'},
+                    {label: 'Mały tekst Google Play', key: 'googlePlayOverline', type: 'text'}, {label: 'Tekst Google Play', key: 'googlePlayLabel', type: 'text'}
+                ],
+                itemFields: [{label: 'Mockup ekranu telefonu', key: 'image', type: 'media'}, {label: 'Opis alternatywny', key: 'alt', type: 'text'}],
+                normalizeData(data) {
+                    const defaults = this.defaults.items;
+                    data.items = defaults.map((screen, index) => ({...screen, ...(data.items[index] || {})}));
+                    if (!data.intro && data.content) data.intro = String(data.content).replace(/<[^>]*>/g, '').trim();
+                },
+                defaults: {
+                    anchor: 'aplikacja', eyebrow: 'Aplikacja', heading: 'Wszystko w Twoim telefonie',
+                    intro: 'Aplikacja Atena Fit daje Ci pełną kontrolę nad Twoim dostępem do siłowni.',
+                    benefit1: 'Zakup i zarządzanie karnetami', benefit2: 'Historia wejść i aktywności', benefit3: 'Udostępnianie karnetu',
+                    benefit4: 'Powiadomienia i aktualności', benefit5: 'Szybkie otwieranie drzwi',
+                    appStoreUrl: '#', appStoreOverline: 'Pobierz w', appStoreLabel: 'App Store', googlePlayUrl: '#', googlePlayOverline: 'Pobierz z', googlePlayLabel: 'Google Play',
+                    items: [
+                        {alt: 'Aplikacja Atena Fit — moje karnety'}, {alt: 'Aplikacja Atena Fit — mobilny kod wejścia'},
+                        {alt: 'Aplikacja Atena Fit — sklep karnetów'}, {alt: 'Aplikacja Atena Fit — statystyki aktywności'}
+                    ]
+                }
+            },
     atena_gallery: {label: 'Strefy klubu', itemLabel: 'strefę', fields: [{label: 'Nagłówek', key: 'heading', type: 'text'}], itemFields: [{label: 'Nazwa', key: 'name', type: 'text'}, {label: 'Zdjęcie', key: 'image', type: 'media'}], defaults: {heading: 'Poznaj Atena Fit', items: [{name: 'Strefa siłowa'}, {name: 'Strefa cardio'}, {name: 'Strefa wolnych ciężarów'}, {name: 'Strefa funkcjonalna'}]}},
     atena_equipment: {label: 'Sprzęt', itemLabel: 'urządzenie', fields: [{label: 'Nagłówek', key: 'heading', type: 'text'}], itemFields: [{label: 'Nazwa', key: 'name', type: 'text'}, {label: 'Opis', key: 'text', type: 'textarea'}, {label: 'Zdjęcie', key: 'image', type: 'media'}], defaults: {heading: 'Sprzęt', items: [{name: 'Hammer Strength'}, {name: 'Technogym'}, {name: 'Matrix'}]}},
     atena_cta: {label: 'CTA Atena Fit', itemLabel: 'CTA', fields: [{label: 'Nagłówek', key: 'heading', type: 'text'}, {label: 'Treść', key: 'content', type: 'richtext'}, {label: 'Zdjęcie', key: 'image', type: 'media'}, {label: 'Tekst przycisku', key: 'buttonLabel', type: 'text'}, {label: 'Adres przycisku', key: 'url', type: 'text'}], defaults: {heading: 'Gotowy na zmianę?', content: '<p>Dołącz do Atena Fit i zacznij trenować już dziś.</p>', buttonLabel: 'Zacznij teraz', url: '#kontakt'}}

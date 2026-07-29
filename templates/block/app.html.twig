@@ -1,1 +1,44 @@
-<section class="atena-section atena-app"><div class="atena-container atena-app__grid"><div><p class="atena-kicker">{{ block.eyebrow|default('') }}</p><h2>{{ block.heading|default('') }}</h2><div>{{ block.content|default('')|raw }}</div></div><div class="atena-app__screens">{% for item in block.items|default([]) %}{% if item.image|default %}<img src="{{ item.image }}" alt="{{ item.alt|default('') }}" loading="lazy">{% endif %}{% endfor %}</div></div></section>
+{% set default_screens = [
+    { image: asset('bundles/shoprothemeatenafit/atena-app-membership-default.png'), alt: 'Aplikacja Atena Fit — moje karnety' },
+    { image: asset('bundles/shoprothemeatenafit/atena-app-entry-default.png'), alt: 'Aplikacja Atena Fit — mobilny kod wejścia' },
+    { image: asset('bundles/shoprothemeatenafit/atena-app-shop-default.png'), alt: 'Aplikacja Atena Fit — sklep karnetów' },
+    { image: asset('bundles/shoprothemeatenafit/atena-app-statistics-default.png'), alt: 'Aplikacja Atena Fit — statystyki aktywności' }
+] %}
+{% set screens = block.items|default([]) %}
+
+<section class="atena-section atena-app"{% if block.anchor|default('') %} id="{{ block.anchor }}"{% endif %}>
+    <div class="atena-container atena-app__layout">
+        <div class="atena-app__copy">
+            <p class="atena-app__eyebrow">{{ block.eyebrow|default('Aplikacja') }}</p>
+            <h2>{{ block.heading|default('Wszystko w Twoim telefonie') }}</h2>
+            <p class="atena-app__intro">{{ block.intro|default('Aplikacja Atena Fit daje Ci pełną kontrolę nad Twoim dostępem do siłowni.') }}</p>
+
+            <ul class="atena-app__benefits">
+                {% for number in 1..5 %}
+                    {% set benefit = attribute(block, 'benefit' ~ number)|default('') %}
+                    {% if benefit %}
+                        <li><span aria-hidden="true">✓</span>{{ benefit }}</li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+
+            <div class="atena-app__stores">
+                <a class="atena-store-badge atena-store-badge--apple" href="{{ block.appStoreUrl|default('#') }}"{% if block.appStoreUrl|default('') starts with 'http' %} target="_blank" rel="noopener noreferrer"{% endif %}>
+                    <span aria-hidden="true">●</span><small>{{ block.appStoreOverline|default('Pobierz w') }}</small><strong>{{ block.appStoreLabel|default('App Store') }}</strong>
+                </a>
+                <a class="atena-store-badge atena-store-badge--google" href="{{ block.googlePlayUrl|default('#') }}"{% if block.googlePlayUrl|default('') starts with 'http' %} target="_blank" rel="noopener noreferrer"{% endif %}>
+                    <span class="atena-store-badge__play" aria-hidden="true">▶</span><small>{{ block.googlePlayOverline|default('Pobierz z') }}</small><strong>{{ block.googlePlayLabel|default('Google Play') }}</strong>
+                </a>
+            </div>
+        </div>
+
+        <div class="atena-app__screens" aria-label="Ekrany aplikacji Atena Fit">
+            {% for fallback in default_screens %}
+                {% set screen = screens[loop.index0]|default({}) %}
+                <figure class="atena-app__screen">
+                    <img src="{{ screen.image|default(fallback.image) }}" alt="{{ screen.alt|default(fallback.alt) }}" loading="lazy">
+                </figure>
+            {% endfor %}
+        </div>
+    </div>
+</section>
