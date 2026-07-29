@@ -47,9 +47,7 @@
                         <div class="atena-phone__viewport">
                             <img class="atena-phone__display" src="{{ screen.image|default(fallback.image) }}" alt="{{ screen.alt|default(fallback.alt) }}" loading="lazy">
                         </div>
-                        <span class="atena-phone__island" aria-hidden="true"></span>
-                        <span class="atena-phone__side atena-phone__side--left" aria-hidden="true"></span>
-                        <span class="atena-phone__side atena-phone__side--right" aria-hidden="true"></span>
+                        <img class="atena-phone__frame" src="{{ asset('bundles/shoprothemeatenafit/atena-phone-frame.png') }}" alt="" aria-hidden="true">
                     </div>
                 </figure>
             {% endfor %}
