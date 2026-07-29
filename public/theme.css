@@ -41,6 +41,15 @@
 @media(max-width:1100px){.atena-app__layout{grid-template-columns:1fr;gap:26px}.atena-app__copy{max-width:600px}.atena-app h2{max-width:560px}.atena-app__screens{max-width:850px;margin:0 auto}}
 @media(max-width:620px){.atena-app{padding:54px 0 60px}.atena-app__screens{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 18px}.atena-app__screen img{max-height:380px}.atena-store-badge{min-width:132px}.atena-app__benefits{font-size:13px}}
 
+/* Oficjalne badge'e sklepów oraz jednakowa widoczna wysokość telefonów. */
+.atena-store-badge { display:block; min-width:0; min-height:0; padding:0; border-radius:0; background:transparent; }
+.atena-store-badge:hover { background:transparent; transform:translateY(-2px); }
+.atena-store-badge img { display:block; width:auto; height:46px; max-width:160px; }
+.atena-app__screen { display:flex; height:430px; align-items:flex-end; justify-content:center; }
+.atena-app__screen img { width:auto; height:420px; max-width:100%; max-height:none; object-fit:contain; transform-origin:center bottom; }
+@media(max-width:1100px){.atena-app__screen{height:400px}.atena-app__screen img{height:390px}}
+@media(max-width:620px){.atena-app__screen{height:350px}.atena-app__screen img{height:340px}.atena-store-badge img{height:42px}}
+
 /* Atena Fit typography: headings use the supplied brand face; all UI and body copy use Montserrat. */
 @font-face { font-family:'Atena Ethnocentric'; src:url('fonts/Ethnocentric-Regular.otf') format('opentype'); font-style:normal; font-weight:400; font-display:swap; }
 .front-theme--atena_fit { --atena-heading:'Atena Ethnocentric', Montserrat, Arial, sans-serif; --atena-body:Montserrat, Arial, sans-serif; font-family:var(--atena-body); }
