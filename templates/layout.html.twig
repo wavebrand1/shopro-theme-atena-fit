@@ -27,16 +27,18 @@
 {% block site_footer %}
 {% set configured_logo = shopro_setting('site_logo') %}
 {% set fallback_logo = asset('bundles/shoprothemeatenafit/atena-fit-logo.svg') %}
+{% set footer_logo = shopro_theme_setting('footer_logo', '') ?: configured_logo ?: fallback_logo %}
 {% set footer_menu = shopro_menu(0) %}
 {% set footer_phone = shopro_setting('site_phone', '') %}
 {% set footer_email = shopro_setting('site_email', '') %}
 {% set footer_address = shopro_setting('site_address', '') %}
 {% set footer_hours = shopro_theme_setting('footer_hours', '') %}
+{% set availability_icon = shopro_theme_setting('footer_availability_icon', '') %}
 <footer class="atena-footer">
     <div class="atena-container atena-footer__grid">
         <div class="atena-footer__brand-column">
             <a class="atena-footer__brand" href="{{ path('app_home') }}" aria-label="{{ shopro_setting('site_name', 'Atena Fit') }}">
-                <img src="{{ configured_logo ?: fallback_logo }}" alt="{{ shopro_setting('site_name', 'Atena Fit') }}"{% if configured_logo %} onerror="this.onerror=null;this.src='{{ fallback_logo|e('js') }}'"{% endif %}>
+                <img src="{{ footer_logo }}" alt="{{ shopro_setting('site_name', 'Atena Fit') }}"{% if footer_logo != fallback_logo %} onerror="this.onerror=null;this.src='{{ fallback_logo|e('js') }}'"{% endif %}>
             </a>
             {% if shopro_theme_setting('footer_show_socials', true) and (shopro_setting('facebook', '') or shopro_setting('instagram', '') or shopro_setting('tiktok', '')) %}
                 <div class="atena-footer__socials" aria-label="Media społecznościowe">
@@ -48,7 +50,7 @@
         </div>
         {% if footer_menu %}<nav class="atena-footer__column" aria-label="Menu stopki"><h2>{{ shopro_theme_setting('footer_menu_title', 'Menu') }}</h2>{% for item in footer_menu %}{% if item.url %}<a href="{{ item.url }}" target="{{ item.target }}"{{ item.target == '_blank' ? ' rel="noopener noreferrer"' : '' }}>{{ item.name }}</a>{% endif %}{% endfor %}</nav>{% endif %}
         {% if shopro_theme_setting('footer_show_contact', true) and (footer_phone or footer_email or footer_address) %}<address class="atena-footer__column atena-footer__contact"><h2>Kontakt</h2>{% if footer_phone %}<a href="tel:{{ footer_phone|replace({' ': '', '-': ''}) }}"><span class="atena-footer__contact-icon">☎</span>{{ footer_phone }}</a>{% endif %}{% if footer_email %}<a href="mailto:{{ footer_email }}"><span class="atena-footer__contact-icon">✉</span>{{ footer_email }}</a>{% endif %}{% if footer_address %}<p><span class="atena-footer__contact-icon">●</span>{{ footer_address|nl2br }}</p>{% endif %}</address>{% endif %}
-        {% if shopro_theme_setting('footer_show_hours', true) and footer_hours %}<div class="atena-footer__hours"><div><h2>{{ shopro_theme_setting('footer_hours_title', 'Godziny otwarcia') }}</h2><p>{{ footer_hours|nl2br }}</p></div><strong aria-label="Dostęp 24 godziny na dobę, 7 dni w tygodniu">24<span>/7</span></strong></div>{% endif %}
+        {% if shopro_theme_setting('footer_show_hours', true) and footer_hours %}<div class="atena-footer__hours"><div><h2>{{ shopro_theme_setting('footer_hours_title', 'Godziny otwarcia') }}</h2><p>{{ footer_hours|nl2br }}</p></div>{% if availability_icon %}<img class="atena-footer__availability-icon" src="{{ availability_icon }}" alt="Dostęp 24 godziny na dobę, 7 dni w tygodniu">{% else %}<strong aria-label="Dostęp 24 godziny na dobę, 7 dni w tygodniu">24<span>/7</span></strong>{% endif %}</div>{% endif %}
     </div>
     <div class="atena-container atena-footer__bottom">© {{ 'now'|date('Y') }} {{ shopro_setting('site_name', 'Atena Fit') }}. {{ shopro_theme_setting('footer_copyright', 'Wszelkie prawa zastrzeżone.') }}</div>
 </footer>

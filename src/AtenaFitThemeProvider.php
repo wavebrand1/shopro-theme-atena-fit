@@ -22,6 +22,10 @@ final class AtenaFitThemeProvider implements ThemeProvider
             builderJavascript: '/bundles/shoprothemeatenafit/page-builder.js',
             frontLayoutTemplate: '@ShoproThemeAtenaFit/layout.html.twig',
             settings: [
+                'footer_logo_file' => ['label' => 'Logo stopki', 'type' => 'file', 'asset_key' => 'footer_logo', 'help' => 'Opcjonalne logo używane tylko w stopce. Obsługiwane: SVG, PNG, JPG, WebP.'],
+                'footer_logo_remove' => ['label' => 'Usuń własne logo stopki', 'type' => 'checkbox', 'remove_asset_key' => 'footer_logo', 'help' => 'Po zapisie stopka ponownie użyje logo z konfiguracji globalnej.'],
+                'footer_availability_icon_file' => ['label' => 'Ikona dostępności 24/7', 'type' => 'file', 'asset_key' => 'footer_availability_icon', 'help' => 'Opcjonalna ikona w prawej części stopki. Obsługiwane: SVG, PNG, JPG, WebP.'],
+                'footer_availability_icon_remove' => ['label' => 'Usuń własną ikonę 24/7', 'type' => 'checkbox', 'remove_asset_key' => 'footer_availability_icon', 'help' => 'Po zapisie zostanie użyty domyślny znak 24/7.'],
                 'header_cta_label' => ['label' => 'Tekst przycisku w nagłówku', 'type' => 'text', 'default' => 'Zacznij teraz'],
                 'header_cta_url' => ['label' => 'Adres przycisku w nagłówku', 'type' => 'text', 'default' => '#kontakt'],
                 'footer_menu_title' => ['label' => 'Nagłówek menu stopki', 'type' => 'text', 'default' => 'Menu'],
