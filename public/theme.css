@@ -133,6 +133,31 @@
 @media(max-width:900px) { .atena-cta { min-height:270px; background-position:64% center; }.atena-cta__inner { width:min(100% - 48px,640px); margin-left:clamp(115px,23vw,240px); }.atena-cta__watermark { left:-90px; } }
 @media(max-width:620px) { .atena-cta { min-height:350px; align-items:flex-start; background-image:linear-gradient(180deg,rgba(255,255,255,.98) 0%,rgba(255,255,255,.9) 55%,rgba(255,255,255,.15) 100%),var(--atena-cta-image); background-position:68% center; }.atena-cta__inner { width:calc(100% - 48px); margin:0 auto; }.atena-cta__content { padding-top:40px; }.atena-cta__watermark { width:205px; left:-84px; top:17%; }.atena-cta h2 { font-size:28px; }.atena-cta__content p { max-width:290px; } }
 
+/* Stopka Atena Fit — pięć stref informacji jak w materiale marki. */
+.atena-footer { padding:0; background:linear-gradient(112deg,#101214 0%,#171a1d 48%,#111315 100%); color:#f7f8fa; }
+.atena-footer__grid { display:grid; grid-template-columns:1.85fr .95fr 1.2fr 1.55fr 1.45fr; gap:clamp(30px,4vw,80px); align-items:start; padding:42px 0 29px; }
+.atena-footer__brand { display:block; width:min(100%,250px); }
+.atena-footer__brand img { display:block; width:100%; max-width:245px; max-height:74px; object-fit:contain; object-position:left center; }
+.atena-footer__socials { display:flex; gap:15px; margin-top:25px; }
+.atena-footer__socials a { display:grid; width:26px; height:26px; place-items:center; border-radius:50%; color:#fff; transition:color .18s ease,transform .18s ease; }
+.atena-footer__socials a:hover { color:var(--atena-red); transform:translateY(-2px); }
+.atena-footer__socials svg { width:23px; height:23px; fill:currentColor; stroke:currentColor; stroke-width:1.8; }
+.atena-footer__socials rect,.atena-footer__socials circle { fill:none; }.atena-footer__socials .atena-footer__social-fill { fill:currentColor; stroke:none; }
+.atena-footer__column h2,.atena-footer__hours h2 { margin:0 0 16px; color:#fff; font-family:var(--atena-body); font-size:12px; font-weight:800; letter-spacing:.01em; text-transform:uppercase; }
+.atena-footer__column a { display:block; width:max-content; max-width:100%; margin:0 0 7px; color:#e0e2e7; font-size:12px; font-style:normal; font-weight:500; line-height:1.32; text-decoration:none; transition:color .18s ease; }
+.atena-footer__column a:hover { color:var(--atena-red); }
+.atena-footer__contact { font-style:normal; }
+.atena-footer__contact p { display:flex; align-items:flex-start; gap:10px; margin:0; color:#e0e2e7; font-size:12px; font-style:normal; font-weight:500; line-height:1.5; }
+.atena-footer__contact-icon { display:inline-grid; width:15px; flex:0 0 15px; place-items:center; color:#fff; font-size:15px; line-height:1; }
+.atena-footer__hours { display:flex; align-items:center; justify-content:space-between; gap:20px; }
+.atena-footer__hours p { margin:0; color:#e1e3e7; font-size:12px; font-weight:500; line-height:1.65; }
+.atena-footer__hours strong { display:grid; width:76px; height:76px; flex:0 0 76px; place-items:center; border:3px solid var(--atena-red); border-radius:50%; color:var(--atena-red); font-family:var(--atena-body); font-size:28px; font-weight:800; letter-spacing:-.08em; line-height:.65; transform:rotate(-11deg); }
+.atena-footer__hours strong span { font-size:14px; letter-spacing:-.04em; }
+.atena-footer__bottom { padding:18px 0 20px; border-top:1px solid rgba(255,255,255,.13); color:#a9adb5; font-size:10px; font-weight:500; text-align:center; }
+@media(max-width:1100px) { .atena-footer__grid { grid-template-columns:1.5fr 1fr 1fr; }.atena-footer__hours { grid-column:span 2; max-width:410px; } }
+@media(max-width:720px) { .atena-footer__grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:35px 25px; padding-top:38px; }.atena-footer__brand-column { grid-column:span 2; }.atena-footer__hours { grid-column:span 2; }.atena-footer__bottom { padding-inline:20px; } }
+@media(max-width:430px) { .atena-footer__grid { grid-template-columns:1fr; }.atena-footer__brand-column,.atena-footer__hours { grid-column:span 1; }.atena-footer__hours { justify-content:flex-start; } }
+
 /* Pricing component — layout based on the Atena Fit visual specification. */
 .atena-pricing { padding:76px 0 38px; background:linear-gradient(180deg,#fff 0%,#fafbfc 100%); }
 .atena-pricing__heading { display:flex; align-items:flex-end; justify-content:space-between; gap:28px; }
