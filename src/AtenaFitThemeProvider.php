@@ -22,6 +22,9 @@ final class AtenaFitThemeProvider implements ThemeProvider
             builderJavascript: '/bundles/shoprothemeatenafit/page-builder.js',
             frontLayoutTemplate: '@ShoproThemeAtenaFit/layout.html.twig',
             settings: [
+                'footer_menu_links' => ['label' => 'Linki kolumny „Menu”', 'type' => 'textarea', 'default' => '', 'help' => 'Jeden link w wierszu w formacie: Nazwa | /adres. Ta lista jest niezależna od menu nagłówka.'],
+                'footer_information_title' => ['label' => 'Nagłówek kolumny informacji', 'type' => 'text', 'default' => 'Informacje'],
+                'footer_information_links' => ['label' => 'Linki kolumny „Informacje”', 'type' => 'textarea', 'default' => '', 'help' => 'Jeden link w wierszu w formacie: Nazwa | /adres.'],
                 'footer_logo_file' => ['label' => 'Logo stopki', 'type' => 'file', 'asset_key' => 'footer_logo', 'help' => 'Opcjonalne logo używane tylko w stopce. Obsługiwane: SVG, PNG, JPG, WebP.'],
                 'footer_logo_remove' => ['label' => 'Usuń własne logo stopki', 'type' => 'checkbox', 'remove_asset_key' => 'footer_logo', 'help' => 'Po zapisie stopka ponownie użyje logo z konfiguracji globalnej.'],
                 'footer_availability_icon_file' => ['label' => 'Ikona dostępności 24/7', 'type' => 'file', 'asset_key' => 'footer_availability_icon', 'help' => 'Opcjonalna ikona w prawej części stopki. Obsługiwane: SVG, PNG, JPG, WebP.'],
