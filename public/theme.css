@@ -291,3 +291,13 @@
 .front-theme--atena_fit .cookie-consent__button { text-transform:uppercase; }
 .front-theme--atena_fit .cookie-consent__button--primary { box-shadow:0 8px 22px rgba(228,29,36,.27); }
 .front-theme--atena_fit .cookie-consent__manage { font-family:var(--atena-body); text-transform:uppercase; }
+
+/* Kept explicit (rather than only through variables) so the expanded settings
+   panel is branded even on installations that still serve an older core CSS. */
+body.front-theme--atena_fit .cookie-consent { border-color:rgba(255,255,255,.18); background:#0d0d0f; color:#fff; }
+body.front-theme--atena_fit .cookie-consent p,body.front-theme--atena_fit .cookie-consent__category small,body.front-theme--atena_fit .cookie-consent__category em { color:#c6c8cd; }
+body.front-theme--atena_fit .cookie-consent__preferences { border-color:rgba(255,255,255,.16); }
+body.front-theme--atena_fit .cookie-consent__category { border-color:rgba(255,255,255,.16); background:#15161a; }
+body.front-theme--atena_fit .cookie-consent__category input { accent-color:#e41d24; }
+body.front-theme--atena_fit .cookie-consent__button { border-color:rgba(255,255,255,.38); background:#15161a; color:#fff; }
+body.front-theme--atena_fit .cookie-consent__button--primary { border-color:#e41d24; background:#e41d24; }
