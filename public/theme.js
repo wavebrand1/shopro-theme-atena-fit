@@ -1,5 +1,26 @@
 document.documentElement.classList.add('atena-fit-ready');
 
+/** Mobilna nawigacja motywu Atena Fit. */
+const atenaMenuToggle = document.querySelector('[data-atena-menu-toggle]');
+const atenaNavigation = document.querySelector('[data-atena-navigation]');
+if (atenaMenuToggle && atenaNavigation) {
+    const closeMenu = () => {
+        atenaMenuToggle.setAttribute('aria-expanded', 'false');
+        atenaNavigation.classList.remove('atena-nav--open');
+        document.documentElement.classList.remove('atena-menu-open');
+    };
+
+    atenaMenuToggle.addEventListener('click', () => {
+        const opening = atenaMenuToggle.getAttribute('aria-expanded') !== 'true';
+        atenaMenuToggle.setAttribute('aria-expanded', opening ? 'true' : 'false');
+        atenaNavigation.classList.toggle('atena-nav--open', opening);
+        document.documentElement.classList.toggle('atena-menu-open', opening);
+    });
+
+    atenaNavigation.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
+    window.addEventListener('resize', () => { if (window.innerWidth > 520) closeMenu(); }, {passive: true});
+}
+
 /**
  * Reusable, dependency-free horizontal carousel.
  * Any future theme component only needs data-atena-carousel, a viewport and

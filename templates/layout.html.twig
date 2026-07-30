@@ -15,7 +15,10 @@
         <a class="atena-brand" href="{{ path('app_home') }}" aria-label="{{ shopro_setting('site_name', 'Atena Fit') }}">
             <img src="{{ configured_logo }}" alt="{{ shopro_setting('site_name', 'Atena Fit') }}" onerror="this.onerror=null;this.src='{{ fallback_logo|e('js') }}'">
         </a>
-        <nav class="atena-nav" aria-label="{{ shopro_trans('front.main_menu') }}">
+        <button class="atena-menu-toggle" type="button" data-atena-menu-toggle aria-controls="atena-navigation" aria-expanded="false" aria-label="Otwórz menu">
+            <span></span><span></span><span></span>
+        </button>
+        <nav class="atena-nav" id="atena-navigation" data-atena-navigation aria-label="{{ shopro_trans('front.main_menu') }}">
             {% for item in shopro_menu(1) %}
                 {% if item.url %}<a href="{{ item.url }}" target="{{ item.target }}"{{ item.target == '_blank' ? ' rel="noopener noreferrer"' : '' }}>{{ item.name }}</a>{% endif %}
             {% endfor %}
