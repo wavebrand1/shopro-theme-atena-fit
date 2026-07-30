@@ -5,7 +5,7 @@
 {% set legacy_hero = block.headingLineOne is not defined and block.heading is defined %}
 
 <section class="atena-hero">
-    {% if hero_image starts with '/bundles/' %}
+    {% if 'bundles/' in hero_image %}
         {{ shopro_theme_picture(hero_image, '', 'atena-hero__image', true, '100vw') }}
     {% elseif hero_image starts with '/uploads/' %}
         {{ shopro_picture(hero_image, '', null, null, true, '100vw') }}

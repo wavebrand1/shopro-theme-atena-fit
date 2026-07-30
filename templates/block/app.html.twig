@@ -48,7 +48,7 @@
                     <div class="atena-phone">
                         <div class="atena-phone__viewport">
                             {% set image = screen.image|default(fallback.image) %}
-                            {% if image starts with '/bundles/' %}
+                            {% if 'bundles/' in image %}
                                 {{ shopro_theme_picture(image, screen.alt|default(fallback.alt), 'atena-phone__display', false, '(max-width: 620px) 42vw, 18vw') }}
                             {% else %}
                                 {{ shopro_picture(image, screen.alt|default(fallback.alt), null, null, false, '(max-width: 620px) 42vw, 18vw') }}

@@ -5,7 +5,7 @@
 
 <section class="atena-cta"{% if block.anchor|default %} id="{{ block.anchor }}"{% endif %}>
     <div class="atena-cta__background" aria-hidden="true">
-        {% if image starts with '/bundles/' %}
+        {% if 'bundles/' in image %}
             {{ shopro_theme_picture(image, '', 'atena-cta__background-image', false, '100vw') }}
         {% else %}
             {{ shopro_picture(image, '', null, null, false, '100vw') }}

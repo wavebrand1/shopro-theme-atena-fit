@@ -22,7 +22,7 @@
             {% set image = item.image|default(fallback.image) %}
             <article class="atena-club-zones__tile">
                 <div class="atena-club-zones__background" aria-hidden="true">
-                    {% if image starts with '/bundles/' %}
+                    {% if 'bundles/' in image %}
                         {{ shopro_theme_picture(image, '', 'atena-club-zones__background-image', false, '(max-width: 620px) 50vw, 18vw') }}
                     {% else %}
                         {{ shopro_picture(image, '', null, null, false, '(max-width: 620px) 50vw, 18vw') }}

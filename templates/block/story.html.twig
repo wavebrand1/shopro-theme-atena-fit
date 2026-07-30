@@ -39,7 +39,7 @@
         <div class="atena-story__visuals">
             <figure class="atena-story__main-image">
                 {% set main_image = block.image|default(default_main_image) %}
-                {% if main_image starts with '/bundles/' %}
+                {% if 'bundles/' in main_image %}
                     {{ shopro_theme_picture(main_image, block.imageAlt|default('Trening w Atena Fit'), 'atena-story__image', false, '(max-width: 840px) 100vw, 52vw') }}
                 {% else %}
                     {{ shopro_picture(main_image, block.imageAlt|default('Trening w Atena Fit'), null, null, false, '(max-width: 840px) 100vw, 52vw') }}
@@ -49,7 +49,7 @@
             <div class="atena-story__bottom-row">
                 <figure class="atena-story__community-image">
                     {% set community_image = block.secondaryImage|default(default_community_image) %}
-                    {% if community_image starts with '/bundles/' %}
+                    {% if 'bundles/' in community_image %}
                         {{ shopro_theme_picture(community_image, block.secondaryImageAlt|default('Społeczność Atena Fit'), 'atena-story__image', false, '(max-width: 840px) 100vw, 34vw') }}
                     {% else %}
                         {{ shopro_picture(community_image, block.secondaryImageAlt|default('Społeczność Atena Fit'), null, null, false, '(max-width: 840px) 100vw, 34vw') }}
