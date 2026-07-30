@@ -136,6 +136,7 @@
 /* Stopka Atena Fit — pięć stref informacji jak w materiale marki. */
 .atena-footer { padding:0; background:linear-gradient(112deg,#101214 0%,#171a1d 48%,#111315 100%); color:#f7f8fa; }
 .atena-footer__grid { display:grid; grid-template-columns:1.85fr .95fr 1.2fr 1.55fr 1.45fr; gap:clamp(30px,4vw,80px); align-items:start; padding:42px 0 29px; }
+.atena-footer__grid { grid-template-columns:minmax(220px,1.7fr) repeat(auto-fit,minmax(150px,1fr)); }
 .atena-footer__brand { display:block; width:min(100%,250px); }
 .atena-footer__brand img { display:block; width:100%; max-width:245px; max-height:74px; object-fit:contain; object-position:left center; }
 .atena-footer__socials { display:flex; gap:15px; margin-top:25px; }
