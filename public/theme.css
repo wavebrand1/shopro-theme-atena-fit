@@ -266,3 +266,28 @@
 .atena-cta__watermark { z-index:2; }
 .atena-cta__inner { z-index:3; }
 @media(max-width:620px){.atena-cta::before{background:linear-gradient(180deg,rgba(255,255,255,.98) 0%,rgba(255,255,255,.9) 55%,rgba(255,255,255,.15) 100%)}.atena-cta__background img{object-position:68% center}}
+
+/* Cookie consent inherits the active front theme via the shared CSS custom properties. */
+.front-theme--atena_fit {
+  --cookie-surface:#0d0d0f;
+  --cookie-text:#fff;
+  --cookie-muted:#c6c8cd;
+  --cookie-border:rgba(255,255,255,.18);
+  --cookie-divider:rgba(255,255,255,.16);
+  --cookie-radius:10px;
+  --cookie-shadow:0 24px 64px rgba(0,0,0,.48);
+  --cookie-button-surface:#15161a;
+  --cookie-button-text:#fff;
+  --cookie-button-border:rgba(255,255,255,.38);
+  --cookie-button-radius:7px;
+  --cookie-primary:#e41d24;
+  --cookie-category-surface:#15161a;
+  --cookie-category-border:rgba(255,255,255,.16);
+  --cookie-category-radius:7px;
+  --cookie-manage-shadow:0 12px 30px rgba(0,0,0,.42);
+}
+.front-theme--atena_fit .cookie-consent { font-family:var(--atena-body); }
+.front-theme--atena_fit .cookie-consent strong { font-family:var(--atena-heading); font-size:1.05rem; font-weight:400; letter-spacing:.02em; text-transform:uppercase; }
+.front-theme--atena_fit .cookie-consent__button { text-transform:uppercase; }
+.front-theme--atena_fit .cookie-consent__button--primary { box-shadow:0 8px 22px rgba(228,29,36,.27); }
+.front-theme--atena_fit .cookie-consent__manage { font-family:var(--atena-body); text-transform:uppercase; }
