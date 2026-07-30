@@ -1,5 +1,29 @@
 document.documentElement.classList.add('atena-fit-ready');
 
+/*
+ * The consent markup belongs to Shopro core, but the Athena visual language
+ * belongs exclusively to this package.  Keep an inline fallback for the modal
+ * surface: it makes the readable background resilient to generic stylesheet
+ * order and to a stale compiled core stylesheet on shared hosting.
+ */
+const atenaCookieConsent = document.querySelector('[data-cookie-consent]');
+if (atenaCookieConsent) {
+    Object.assign(atenaCookieConsent.style, {
+        backgroundColor: '#0d0d0f',
+        color: '#ffffff',
+        borderColor: 'rgba(255,255,255,.18)',
+        boxShadow: '0 24px 64px rgba(0,0,0,.48)',
+    });
+
+    atenaCookieConsent.querySelectorAll('.cookie-consent__button').forEach((button) => {
+        Object.assign(button.style, {
+            backgroundColor: button.classList.contains('cookie-consent__button--primary') ? '#e41d24' : '#15161a',
+            color: '#ffffff',
+            borderColor: button.classList.contains('cookie-consent__button--primary') ? '#e41d24' : 'rgba(255,255,255,.38)',
+        });
+    });
+}
+
 /** Mobilna nawigacja motywu Atena Fit. */
 const atenaMenuToggle = document.querySelector('[data-atena-menu-toggle]');
 const atenaNavigation = document.querySelector('[data-atena-navigation]');
