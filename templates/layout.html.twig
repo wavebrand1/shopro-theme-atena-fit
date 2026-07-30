@@ -6,25 +6,18 @@
 {% endblock %}
 
 {% block site_header %}
-{% set top_menu = shopro_menu(1) %}
-{% set main_menu = shopro_menu(0) %}
 <header class="atena-header">
-    {% if top_menu %}
-        <div class="atena-header__top"><div class="atena-container atena-header__top-inner">
-            <nav class="atena-header__top-nav" aria-label="Menu górne">
-                {% for item in top_menu %}{% if item.url %}<a href="{{ item.url }}" target="{{ item.target }}"{{ item.target == '_blank' ? ' rel="noopener noreferrer"' : '' }}>{{ item.name }}</a>{% endif %}{% endfor %}
-            </nav>
-        </div></div>
-    {% endif %}
     <div class="atena-container atena-header__inner">
-        {% set configured_logo = shopro_setting('site_logo') %}
         {% set fallback_logo = asset('bundles/shoprothemeatenafit/atena-fit-logo.svg') %}
+        {% set configured_logo = shopro_branding_asset(shopro_setting('site_logo'), fallback_logo) %}
         <a class="atena-brand" href="{{ path('app_home') }}" aria-label="{{ shopro_setting('site_name', 'Atena Fit') }}">
-            <img src="{{ configured_logo ?: fallback_logo }}" alt="{{ shopro_setting('site_name', 'Atena Fit') }}"{% if configured_logo %} onerror="this.onerror=null;this.src='{{ fallback_logo|e('js') }}'"{% endif %}>
+            <img src="{{ configured_logo }}" alt="{{ shopro_setting('site_name', 'Atena Fit') }}" onerror="this.onerror=null;this.src='{{ fallback_logo|e('js') }}'">
         </a>
-        {% if main_menu %}<nav class="atena-nav" aria-label="{{ shopro_trans('front.main_menu') }}">
-            {% for item in main_menu %}{% if item.url %}<a href="{{ item.url }}" target="{{ item.target }}"{{ item.target == '_blank' ? ' rel="noopener noreferrer"' : '' }}>{{ item.name }}</a>{% endif %}{% endfor %}
-        </nav>{% endif %}
+        <nav class="atena-nav" aria-label="{{ shopro_trans('front.main_menu') }}">
+            {% for item in shopro_menu(1) %}
+                {% if item.url %}<a href="{{ item.url }}" target="{{ item.target }}"{{ item.target == '_blank' ? ' rel="noopener noreferrer"' : '' }}>{{ item.name }}</a>{% endif %}
+            {% endfor %}
+        </nav>
         {% set header_cta_label = shopro_theme_setting('header_cta_label', 'Zacznij teraz') %}
         {% if header_cta_label %}<a class="atena-button atena-button--small" href="{{ shopro_theme_setting('header_cta_url', '#kontakt') }}">{{ header_cta_label }} <span aria-hidden="true">›</span></a>{% endif %}
     </div>
@@ -32,9 +25,9 @@
 {% endblock %}
 
 {% block site_footer %}
-{% set configured_logo = shopro_setting('site_logo') %}
 {% set fallback_logo = asset('bundles/shoprothemeatenafit/atena-fit-logo.svg') %}
-{% set footer_logo = shopro_theme_setting('footer_logo', '') ?: configured_logo ?: fallback_logo %}
+{% set configured_logo = shopro_branding_asset(shopro_setting('site_logo'), fallback_logo) %}
+{% set footer_logo = shopro_branding_asset(shopro_theme_setting('footer_logo', ''), configured_logo) %}
 {% set footer_phone = shopro_setting('site_phone', '') %}
 {% set footer_email = shopro_setting('site_email', '') %}
 {% set footer_address = shopro_setting('site_address', '') %}
