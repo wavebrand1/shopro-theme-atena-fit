@@ -237,3 +237,26 @@
 
 /* Reset generic legacy image rules inside the redesigned motivation component. */
 .atena-story__main-image>img,.atena-story__community-image img { min-height:0; border-radius:0; }
+
+/* Responsive <picture> wrappers used by the public theme image helper. */
+.atena-app__screen picture,.atena-equipment__image picture,.atena-steps__visual picture,.atena-story__community-image picture { display:block; width:100%; height:100%; }
+.atena-story__main-image>picture { display:block; width:100%; height:550px; }
+.atena-story__main-image>picture>img { display:block; width:100%; height:550px; min-height:0; border-radius:0; object-fit:cover; object-position:center; }
+.atena-equipment__image picture img,.atena-steps__visual picture img,.atena-story__community-image picture img { display:block; width:100%; height:100%; object-fit:cover; }
+.atena-equipment__image picture img { object-fit:contain; mix-blend-mode:multiply; }
+@media(max-width:1120px){.atena-story__main-image>picture,.atena-story__main-image>picture>img{min-height:500px;height:500px}}
+@media(max-width:840px){.atena-story__main-image>picture,.atena-story__main-image>picture>img{min-height:440px;height:440px}}
+@media(max-width:540px){.atena-story__main-image>picture,.atena-story__main-image>picture>img{min-height:340px;height:340px}}
+
+/* Below-the-fold imagery is served as responsive AVIF/WebP rather than CSS backgrounds. */
+.atena-cta__background,.atena-club-zones__background { position:absolute; z-index:0; inset:0; overflow:hidden; }
+.atena-cta__background picture,.atena-club-zones__background picture { display:block; width:100%; height:100%; }
+.atena-cta__background img,.atena-club-zones__background img { display:block; width:100%; height:100%; object-fit:cover; }
+.atena-club-zones__tile { background-image:none !important; }
+.atena-club-zones__tile::after { z-index:1; }
+.atena-club-zones__tile-content { position:relative; z-index:2; }
+.atena-cta { background-image:none; }
+.atena-cta::before { position:absolute; z-index:1; inset:0; background:linear-gradient(90deg,rgba(255,255,255,.98) 0%,rgba(255,255,255,.96) 34%,rgba(255,255,255,.58) 58%,rgba(255,255,255,.06) 78%); content:''; pointer-events:none; }
+.atena-cta__watermark { z-index:2; }
+.atena-cta__inner { z-index:3; }
+@media(max-width:620px){.atena-cta::before{background:linear-gradient(180deg,rgba(255,255,255,.98) 0%,rgba(255,255,255,.9) 55%,rgba(255,255,255,.15) 100%)}.atena-cta__background img{object-position:68% center}}

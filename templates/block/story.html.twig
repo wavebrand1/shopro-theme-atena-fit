@@ -38,11 +38,23 @@
 
         <div class="atena-story__visuals">
             <figure class="atena-story__main-image">
-                <img src="{{ block.image|default(default_main_image) }}" alt="{{ block.imageAlt|default('Trening w Atena Fit') }}" loading="lazy">
+                {% set main_image = block.image|default(default_main_image) %}
+                {% if main_image starts with '/bundles/' %}
+                    {{ shopro_theme_picture(main_image, block.imageAlt|default('Trening w Atena Fit'), 'atena-story__image', false, '(max-width: 840px) 100vw, 52vw') }}
+                {% else %}
+                    {{ shopro_picture(main_image, block.imageAlt|default('Trening w Atena Fit'), null, null, false, '(max-width: 840px) 100vw, 52vw') }}
+                {% endif %}
                 <figcaption><span class="atena-story__mark">A</span><strong>{{ block.cardLine1|default('Twoje cele.') }}<br>{{ block.cardLine2|default('Twoja droga.') }}</strong><i></i><strong>{{ block.cardLine3|default('My dajemy') }}<br><em>{{ block.cardHighlight|default('przestrzeń.') }}</em></strong></figcaption>
             </figure>
             <div class="atena-story__bottom-row">
-                <figure class="atena-story__community-image"><img src="{{ block.secondaryImage|default(default_community_image) }}" alt="{{ block.secondaryImageAlt|default('Społeczność Atena Fit') }}" loading="lazy"></figure>
+                <figure class="atena-story__community-image">
+                    {% set community_image = block.secondaryImage|default(default_community_image) %}
+                    {% if community_image starts with '/bundles/' %}
+                        {{ shopro_theme_picture(community_image, block.secondaryImageAlt|default('Społeczność Atena Fit'), 'atena-story__image', false, '(max-width: 840px) 100vw, 34vw') }}
+                    {% else %}
+                        {{ shopro_picture(community_image, block.secondaryImageAlt|default('Społeczność Atena Fit'), null, null, false, '(max-width: 840px) 100vw, 34vw') }}
+                    {% endif %}
+                </figure>
                 <div class="atena-story__features">
                     {% for feature in features %}
                         <article>

@@ -19,7 +19,15 @@
         {% for fallback in defaults %}
             {% set item = items[loop.index0]|default({}) %}
             {% set icon = item.icon|default(fallback.icon) %}
-            <article class="atena-club-zones__tile" style="background-image:url('{{ item.image|default(fallback.image)|e('html_attr') }}')">
+            {% set image = item.image|default(fallback.image) %}
+            <article class="atena-club-zones__tile">
+                <div class="atena-club-zones__background" aria-hidden="true">
+                    {% if image starts with '/bundles/' %}
+                        {{ shopro_theme_picture(image, '', 'atena-club-zones__background-image', false, '(max-width: 620px) 50vw, 18vw') }}
+                    {% else %}
+                        {{ shopro_picture(image, '', null, null, false, '(max-width: 620px) 50vw, 18vw') }}
+                    {% endif %}
+                </div>
                 <div class="atena-club-zones__tile-content">
                     <span class="atena-club-zones__icon" aria-hidden="true">
                         {% if icon == 'cardio' %}

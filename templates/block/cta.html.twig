@@ -1,8 +1,16 @@
 {% set default_image = asset('bundles/shoprothemeatenafit/atena-cta-default.png') %}
 {% set default_mark = asset('bundles/shoprothemeatenafit/atena-fit-mark.svg') %}
 {% set watermark = block.watermark|default(block.watermarkImage|default(default_mark)) %}
+{% set image = block.image|default(default_image) %}
 
-<section class="atena-cta"{% if block.anchor|default %} id="{{ block.anchor }}"{% endif %} style="--atena-cta-image:url('{{ block.image|default(default_image)|e('html_attr') }}')">
+<section class="atena-cta"{% if block.anchor|default %} id="{{ block.anchor }}"{% endif %}>
+    <div class="atena-cta__background" aria-hidden="true">
+        {% if image starts with '/bundles/' %}
+            {{ shopro_theme_picture(image, '', 'atena-cta__background-image', false, '100vw') }}
+        {% else %}
+            {{ shopro_picture(image, '', null, null, false, '100vw') }}
+        {% endif %}
+    </div>
     <img class="atena-cta__watermark" src="{{ watermark }}" alt="" aria-hidden="true">
     <div class="atena-container atena-cta__inner">
         <div class="atena-cta__content">

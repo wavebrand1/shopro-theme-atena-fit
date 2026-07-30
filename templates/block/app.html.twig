@@ -47,7 +47,12 @@
                 <figure class="atena-app__screen">
                     <div class="atena-phone">
                         <div class="atena-phone__viewport">
-                            <img class="atena-phone__display" src="{{ screen.image|default(fallback.image) }}" alt="{{ screen.alt|default(fallback.alt) }}" loading="lazy">
+                            {% set image = screen.image|default(fallback.image) %}
+                            {% if image starts with '/bundles/' %}
+                                {{ shopro_theme_picture(image, screen.alt|default(fallback.alt), 'atena-phone__display', false, '(max-width: 620px) 42vw, 18vw') }}
+                            {% else %}
+                                {{ shopro_picture(image, screen.alt|default(fallback.alt), null, null, false, '(max-width: 620px) 42vw, 18vw') }}
+                            {% endif %}
                         </div>
                         <img class="atena-phone__frame" src="{{ asset('bundles/shoprothemeatenafit/atena-phone-frame.png') }}" alt="" aria-hidden="true">
                     </div>

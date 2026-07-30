@@ -27,7 +27,12 @@
                     {% set item = items[index]|default({}) %}
                     <article class="atena-equipment__card">
                         <div class="atena-equipment__image">
-                            <img src="{{ item.image|default(fallback.image) }}" alt="{{ item.name|default(fallback.name) }}" loading="lazy">
+                            {% set image = item.image|default(fallback.image) %}
+                            {% if image starts with '/bundles/' %}
+                                {{ shopro_theme_picture(image, item.name|default(fallback.name), 'atena-equipment__asset', false, '(max-width: 500px) 100vw, (max-width: 820px) 50vw, 20vw') }}
+                            {% else %}
+                                {{ shopro_picture(image, item.name|default(fallback.name), null, null, false, '(max-width: 500px) 100vw, (max-width: 820px) 50vw, 20vw') }}
+                            {% endif %}
                         </div>
                         <h3>{{ item.name|default(fallback.name) }}</h3>
                         <p>{{ item.text|default(fallback.text) }}</p>

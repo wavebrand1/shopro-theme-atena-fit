@@ -55,7 +55,12 @@
             </div>
         </div>
         <div class="atena-steps__visual">
-            <img src="{{ block.image|default(default_image) }}" alt="{{ block.imageAlt|default('Aplikacja Atena Fit na telefonie') }}" loading="lazy">
+            {% set image = block.image|default(default_image) %}
+            {% if image starts with '/bundles/' %}
+                {{ shopro_theme_picture(image, block.imageAlt|default('Aplikacja Atena Fit na telefonie'), 'atena-steps__image', false, '(max-width: 840px) 100vw, 46vw') }}
+            {% else %}
+                {{ shopro_picture(image, block.imageAlt|default('Aplikacja Atena Fit na telefonie'), null, null, false, '(max-width: 840px) 100vw, 46vw') }}
+            {% endif %}
         </div>
     </div>
 </section>
