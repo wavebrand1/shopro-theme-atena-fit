@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap');
-
 @font-face {
     font-family: 'Atena Ethnocentric';
     src: url('fonts/Ethnocentric-Regular.otf') format('opentype');
@@ -16,11 +14,12 @@
     align-items: center;
     overflow: hidden;
     color: #fff;
-    background: linear-gradient(90deg, rgba(13, 13, 15, .97) 0%, rgba(13, 13, 15, .76) 43%, rgba(13, 13, 15, .14) 76%, rgba(13, 13, 15, .63) 100%), var(--atena-hero-image), #0d0d0f;
-    background-position: center;
-    background-size: cover;
+    background: #0d0d0f;
     font-family: Montserrat, Arial, sans-serif;
 }
+.atena-hero::before { content: ''; position: absolute; z-index: 1; inset: 0; background: linear-gradient(90deg, rgba(13, 13, 15, .97) 0%, rgba(13, 13, 15, .76) 43%, rgba(13, 13, 15, .14) 76%, rgba(13, 13, 15, .63) 100%); pointer-events: none; }
+.atena-hero > picture { position: absolute; z-index: 0; inset: 0; display: block; }
+.atena-hero__image,.atena-hero > picture img { position: absolute; z-index: 0; inset: 0; display: block; width: 100%; height: 100%; object-fit: cover; object-position: center; }
 .atena-hero::after { content: ''; position: absolute; z-index: -1; inset: auto 0 0; height: 126px; background: linear-gradient(transparent, rgba(0, 0, 0, .72)); pointer-events: none; }
 .atena-hero__content { position: relative; z-index: 2; width: min(1356px, calc(100% - 120px)); max-width: none; margin: 0 auto; padding: 62px 0 33px; }
 .atena-hero .atena-kicker { display: none; }
@@ -45,6 +44,6 @@
 .atena-hero__benefits strong { max-width: 115px; font-family: Montserrat, Arial, sans-serif; font-size: 12px; font-weight: 700; line-height: 1.3; text-transform: uppercase; }
 .atena-hero__mark { position: absolute; z-index: 1; top: 11%; right: 4.8%; width: min(23vw, 352px); height: auto; opacity: .78; filter: drop-shadow(0 6px 18px rgba(0,0,0,.3)); pointer-events: none; }
 
-@media (max-width: 980px) { .atena-hero { min-height: 640px; background-position: 58% center; } .atena-hero__content { width: calc(100% - 64px); } .atena-hero__mark { right: -4%; width: 290px; opacity: .48; } .atena-hero__benefits > div { min-width: 0; padding: 0 13px; } }
-@media (max-width: 720px) { .atena-hero { min-height: 650px; align-items: end; background: linear-gradient(90deg, rgba(13,13,15,.93), rgba(13,13,15,.7)), var(--atena-hero-image), #0d0d0f; background-position: 60% center; background-size: cover; } .atena-hero__content { width: calc(100% - 40px); padding: 80px 0 25px; } .atena-hero h1 { font-size: clamp(45px, 13vw, 70px); } .atena-hero__copy { margin-top: 22px; font-size: 14px; } .atena-hero .atena-actions { gap: 12px; flex-wrap: wrap; margin-top: 24px; } .atena-hero .atena-button, .atena-hero .atena-button--ghost { min-width: 0; padding: 14px 16px; font-size: 14px; } .atena-hero__benefits { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 34px; } .atena-hero__benefits > div, .atena-hero__benefits > div:first-child { max-width: none; min-height: 45px; padding: 0; border: 0; } .atena-hero__benefit-icon { width: 31px; height: 31px; flex-basis: 31px; } .atena-hero__benefits strong { font-size: 12px; } .atena-hero__mark { top: 8%; right: -14%; width: 265px; opacity: .3; } }
+@media (max-width: 980px) { .atena-hero { min-height: 640px; } .atena-hero__image,.atena-hero > picture img { object-position: 58% center; } .atena-hero__content { width: calc(100% - 64px); } .atena-hero__mark { right: -4%; width: 290px; opacity: .48; } .atena-hero__benefits > div { min-width: 0; padding: 0 13px; } }
+@media (max-width: 720px) { .atena-hero { min-height: 650px; align-items: end; } .atena-hero::before { background: linear-gradient(90deg, rgba(13,13,15,.93), rgba(13,13,15,.7)); } .atena-hero__image,.atena-hero > picture img { object-position: 60% center; } .atena-hero__content { width: calc(100% - 40px); padding: 80px 0 25px; } .atena-hero h1 { font-size: clamp(45px, 13vw, 70px); } .atena-hero__copy { margin-top: 22px; font-size: 14px; } .atena-hero .atena-actions { gap: 12px; flex-wrap: wrap; margin-top: 24px; } .atena-hero .atena-button, .atena-hero .atena-button--ghost { min-width: 0; padding: 14px 16px; font-size: 14px; } .atena-hero__benefits { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 34px; } .atena-hero__benefits > div, .atena-hero__benefits > div:first-child { max-width: none; min-height: 45px; padding: 0; border: 0; } .atena-hero__benefit-icon { width: 31px; height: 31px; flex-basis: 31px; } .atena-hero__benefits strong { font-size: 12px; } .atena-hero__mark { top: 8%; right: -14%; width: 265px; opacity: .3; } }
 @media (max-width: 410px) { .atena-hero .atena-button { width: 100%; } }

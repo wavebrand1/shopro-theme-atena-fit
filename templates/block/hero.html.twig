@@ -4,7 +4,14 @@
 {% set watermark = block.watermark|default(default_watermark) %}
 {% set legacy_hero = block.headingLineOne is not defined and block.heading is defined %}
 
-<section class="atena-hero" style="--atena-hero-image:url('{{ hero_image|e('html_attr') }}')">
+<section class="atena-hero">
+    {% if hero_image starts with '/bundles/' %}
+        {{ shopro_theme_picture(hero_image, '', 'atena-hero__image', true, '100vw') }}
+    {% elseif hero_image starts with '/uploads/' %}
+        {{ shopro_picture(hero_image, '', null, null, true, '100vw') }}
+    {% else %}
+        <img class="atena-hero__image" src="{{ hero_image }}" alt="" aria-hidden="true" loading="eager" fetchpriority="high" decoding="async">
+    {% endif %}
     <div class="atena-container atena-hero__content">
         <p class="atena-kicker">{{ block.eyebrow|default('Atena Fit') }}</p>
         <h1>
