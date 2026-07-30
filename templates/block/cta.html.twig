@@ -1,14 +1,15 @@
 {% set default_image = asset('bundles/shoprothemeatenafit/atena-cta-default.png') %}
 {% set default_mark = asset('bundles/shoprothemeatenafit/atena-fit-mark.svg') %}
+{% set watermark = block.watermark|default(block.watermarkImage|default(default_mark)) %}
 
 <section class="atena-cta"{% if block.anchor|default %} id="{{ block.anchor }}"{% endif %} style="--atena-cta-image:url('{{ block.image|default(default_image)|e('html_attr') }}')">
-    <img class="atena-cta__watermark" src="{{ block.watermarkImage|default(default_mark) }}" alt="" aria-hidden="true">
+    <img class="atena-cta__watermark" src="{{ watermark }}" alt="" aria-hidden="true">
     <div class="atena-container atena-cta__inner">
         <div class="atena-cta__content">
             <h2>{{ block.heading|default('Gotowy na zmianę?') }}</h2>
             <p>{{ block.description|default(block.content|default('Dołącz do Atena Fit i zacznij trenować już dziś.')|striptags) }}</p>
             {% if block.buttonLabel|default %}
-                <a class="atena-cta__button" href="{{ block.url|default('#kontakt') }}">{{ block.buttonLabel }} <span aria-hidden="true">›</span></a>
+                <a class="atena-button atena-cta__button" href="{{ block.url|default('#kontakt') }}">{{ block.buttonLabel }} <span aria-hidden="true">›</span></a>
             {% endif %}
         </div>
     </div>

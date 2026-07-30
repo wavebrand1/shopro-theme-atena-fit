@@ -128,8 +128,8 @@
 .atena-cta__content { max-width:430px; padding:32px 0; }
 .atena-cta h2 { margin:0; color:#0d0d0f; font-family:var(--atena-heading); font-size:clamp(25px,2.4vw,38px); font-weight:400; letter-spacing:-.03em; line-height:1.05; text-transform:uppercase; }
 .atena-cta__content p { margin:14px 0 22px; color:#363943; font-size:14px; font-weight:500; line-height:1.5; }
-.atena-cta__button { display:inline-flex; min-height:47px; align-items:center; justify-content:center; gap:31px; padding:0 20px 0 24px; border-radius:7px; background:var(--atena-red); box-shadow:0 7px 16px rgba(228,29,36,.21); color:#fff; font-family:var(--atena-body); font-size:11px; font-weight:800; text-decoration:none; text-transform:uppercase; transition:background .18s ease,transform .18s ease; }
-.atena-cta__button span { font-size:27px; font-weight:400; line-height:0; }.atena-cta__button:hover { background:#c8161d; transform:translateY(-2px); }
+.atena-cta .atena-cta__button { gap:12px; margin:0; }
+.atena-cta__button span { font-size:23px; font-weight:400; line-height:0; }
 @media(max-width:900px) { .atena-cta { min-height:270px; background-position:64% center; }.atena-cta__inner { width:min(100% - 48px,640px); margin-left:clamp(115px,23vw,240px); }.atena-cta__watermark { left:-90px; } }
 @media(max-width:620px) { .atena-cta { min-height:350px; align-items:flex-start; background-image:linear-gradient(180deg,rgba(255,255,255,.98) 0%,rgba(255,255,255,.9) 55%,rgba(255,255,255,.15) 100%),var(--atena-cta-image); background-position:68% center; }.atena-cta__inner { width:calc(100% - 48px); margin:0 auto; }.atena-cta__content { padding-top:40px; }.atena-cta__watermark { width:205px; left:-84px; top:17%; }.atena-cta h2 { font-size:28px; }.atena-cta__content p { max-width:290px; } }
 
