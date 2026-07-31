@@ -46,9 +46,11 @@
                             <rect x="6" y="7" width="20" height="19" rx="3" stroke="currentColor" stroke-width="1.8"/><path d="M10 5v5m12-5v5M9 14h14m-10 5h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
                         {% endif %}
                     </svg>
-                    {% set plan_url = plan.url is defined ? plan.url : '#' %}
-                    {% set plan_button_label = plan.buttonLabel is defined ? plan.buttonLabel : block.buttonLabel|default('Kup teraz') %}
-                    {% if plan.showButton|default(true) and plan_url|trim and plan_button_label|trim %}
+                    {# The CTA is optional: false/empty values must not be replaced by Twig defaults. #}
+                    {% set plan_url = plan.url is defined and plan.url is not null ? plan.url : '' %}
+                    {% set plan_button_label = plan.buttonLabel is defined and plan.buttonLabel is not null ? plan.buttonLabel : '' %}
+                    {% set show_plan_button = plan.showButton is not defined or plan.showButton is null ? true : plan.showButton %}
+                    {% if show_plan_button and plan_url|trim and plan_button_label|trim %}
                         <a href="{{ plan_url }}">{{ plan_button_label }}</a>
                     {% endif %}
                 </article>
