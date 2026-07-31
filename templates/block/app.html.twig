@@ -16,13 +16,14 @@
 <section class="atena-section atena-app"{% if block.anchor|default('') %} id="{{ block.anchor }}"{% endif %}>
     <div class="atena-container atena-app__layout">
         <div class="atena-app__copy">
-            <p class="atena-app__eyebrow">{{ block.eyebrow|default('Aplikacja') }}</p>
-            <h2>{{ block.heading|default('Wszystko w Twoim telefonie') }}</h2>
-            <p class="atena-app__intro">{{ block.intro|default('Aplikacja Atena Fit daje Ci pełną kontrolę nad Twoim dostępem do siłowni.') }}</p>
+            <p class="atena-app__eyebrow">{{ block.eyebrow is defined ? block.eyebrow : 'Aplikacja' }}</p>
+            <h2>{{ block.heading is defined ? block.heading : 'Wszystko w Twoim telefonie' }}</h2>
+            <p class="atena-app__intro">{{ block.intro is defined ? block.intro : 'Aplikacja Atena Fit daje Ci pełną kontrolę nad Twoim dostępem do siłowni.' }}</p>
 
             <ul class="atena-app__benefits">
                 {% for default_benefit in default_benefits %}
-                    {% set benefit = attribute(block, 'benefit' ~ loop.index)|default(default_benefit, true) %}
+                    {% set benefit_key = 'benefit' ~ loop.index %}
+                    {% set benefit = attribute(block, benefit_key) is defined ? attribute(block, benefit_key) : default_benefit %}
                     {% if benefit %}
                         <li><span aria-hidden="true">✓</span>{{ benefit }}</li>
                     {% endif %}
@@ -30,14 +31,16 @@
             </ul>
 
             <div class="atena-app__stores">
-                <a class="atena-store-badge" href="{{ block.appStoreUrl|default('#') }}"{% if block.appStoreUrl|default('') starts with 'http' %} target="_blank" rel="noopener noreferrer"{% endif %} aria-label="{{ block.appStoreLabel|default('Pobierz w App Store') }}">
+                {% set app_store_label = block.appStoreLabel is defined ? block.appStoreLabel : 'App Store' %}
+                {% if app_store_label|trim %}<a class="atena-store-badge" href="{{ block.appStoreUrl|default('#') }}"{% if block.appStoreUrl|default('') starts with 'http' %} target="_blank" rel="noopener noreferrer"{% endif %} aria-label="{{ app_store_label }}">
                     <img class="atena-store-badge__icon" src="{{ asset('bundles/shoprothemeatenafit/appstore.svg') }}" alt="">
-                    <span class="atena-store-badge__copy"><small>{{ block.appStoreOverline|default('Pobierz w') }}</small><strong>{{ block.appStoreLabel|default('App Store') }}</strong></span>
-                </a>
-                <a class="atena-store-badge" href="{{ block.googlePlayUrl|default('#') }}"{% if block.googlePlayUrl|default('') starts with 'http' %} target="_blank" rel="noopener noreferrer"{% endif %} aria-label="{{ block.googlePlayLabel|default('Pobierz z Google Play') }}">
+                    <span class="atena-store-badge__copy"><small>{{ block.appStoreOverline is defined ? block.appStoreOverline : 'Pobierz w' }}</small><strong>{{ app_store_label }}</strong></span>
+                </a>{% endif %}
+                {% set google_play_label = block.googlePlayLabel is defined ? block.googlePlayLabel : 'Google Play' %}
+                {% if google_play_label|trim %}<a class="atena-store-badge" href="{{ block.googlePlayUrl|default('#') }}"{% if block.googlePlayUrl|default('') starts with 'http' %} target="_blank" rel="noopener noreferrer"{% endif %} aria-label="{{ google_play_label }}">
                     <img class="atena-store-badge__icon" src="{{ asset('bundles/shoprothemeatenafit/googleplay.svg') }}" alt="">
-                    <span class="atena-store-badge__copy"><small>{{ block.googlePlayOverline|default('Pobierz z') }}</small><strong>{{ block.googlePlayLabel|default('Google Play') }}</strong></span>
-                </a>
+                    <span class="atena-store-badge__copy"><small>{{ block.googlePlayOverline is defined ? block.googlePlayOverline : 'Pobierz z' }}</small><strong>{{ google_play_label }}</strong></span>
+                </a>{% endif %}
             </div>
         </div>
 
@@ -49,9 +52,9 @@
                         <div class="atena-phone__viewport">
                             {% set image = screen.image|default(fallback.image) %}
                             {% if 'bundles/' in image %}
-                                {{ shopro_theme_picture(image, screen.alt|default(fallback.alt), 'atena-phone__display', false, '(max-width: 620px) 42vw, 18vw') }}
+                                {{ shopro_theme_picture(image, screen.alt is defined ? screen.alt : fallback.alt, 'atena-phone__display', false, '(max-width: 620px) 42vw, 18vw') }}
                             {% else %}
-                                {{ shopro_picture(image, screen.alt|default(fallback.alt), null, null, false, '(max-width: 620px) 42vw, 18vw') }}
+                                {{ shopro_picture(image, screen.alt is defined ? screen.alt : fallback.alt, null, null, false, '(max-width: 620px) 42vw, 18vw') }}
                             {% endif %}
                         </div>
                         <img class="atena-phone__frame" src="{{ asset('bundles/shoprothemeatenafit/atena-phone-frame.png') }}" alt="" aria-hidden="true">

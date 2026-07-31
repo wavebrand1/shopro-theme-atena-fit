@@ -8,11 +8,12 @@
 
 <section class="atena-club-zones"{% if block.anchor|default %} id="{{ block.anchor }}"{% endif %}>
     <div class="atena-club-zones__intro">
-        <h2>{{ block.heading|default('Poznaj Atena Fit') }}<span aria-hidden="true"></span></h2>
-        <p>{{ block.description|default('Nowoczesna przestrzeń stworzona z myślą o Twoim komforcie i efektach.') }}</p>
-        <a class="atena-club-zones__button" href="{{ block.url|default('#kontakt') }}">
-            {{ block.buttonLabel|default('Zobacz więcej zdjęć') }} <span aria-hidden="true">›</span>
-        </a>
+        <h2>{{ block.heading is defined ? block.heading : 'Poznaj Atena Fit' }}<span aria-hidden="true"></span></h2>
+        <p>{{ block.description is defined ? block.description : 'Nowoczesna przestrzeń stworzona z myślą o Twoim komforcie i efektach.' }}</p>
+        {% set button_label = block.buttonLabel is defined ? block.buttonLabel : 'Zobacz więcej zdjęć' %}
+        {% if button_label|trim %}<a class="atena-club-zones__button" href="{{ block.url|default('#kontakt') }}">
+            {{ button_label }} <span aria-hidden="true">›</span>
+        </a>{% endif %}
     </div>
 
     <div class="atena-club-zones__tiles">
@@ -40,7 +41,7 @@
                             <svg viewBox="0 0 64 64"><path d="M8 23v18M15 18v28M49 18v28M56 23v18M15 32h34"/><path d="M23 25v14M41 25v14"/></svg>
                         {% endif %}
                     </span>
-                    <h3>{{ item.name|default(fallback.name) }}</h3>
+                    <h3>{{ item.name is defined ? item.name : fallback.name }}</h3>
                 </div>
             </article>
         {% endfor %}

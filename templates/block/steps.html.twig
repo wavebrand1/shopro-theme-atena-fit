@@ -21,8 +21,8 @@
         <div class="atena-steps__content">
             <div class="atena-steps__content-inner">
                 <header class="atena-steps__heading">
-                    <h2>{{ block.heading|default('Jak zacząć?') }}</h2>
-                    <p>{{ block.intro|default('4 proste kroki do Twojego pierwszego treningu.') }}</p>
+                    <h2>{{ block.heading is defined ? block.heading : 'Jak zacząć?' }}</h2>
+                    <p>{{ block.intro is defined ? block.intro : '4 proste kroki do Twojego pierwszego treningu.' }}</p>
                 </header>
 
                 <div class="atena-steps__flow">
@@ -57,9 +57,9 @@
         <div class="atena-steps__visual">
             {% set image = block.image|default(default_image) %}
             {% if 'bundles/' in image %}
-                {{ shopro_theme_picture(image, block.imageAlt|default('Aplikacja Atena Fit na telefonie'), 'atena-steps__image', false, '(max-width: 840px) 100vw, 46vw') }}
+                {{ shopro_theme_picture(image, block.imageAlt is defined ? block.imageAlt : 'Aplikacja Atena Fit na telefonie', 'atena-steps__image', false, '(max-width: 840px) 100vw, 46vw') }}
             {% else %}
-                {{ shopro_picture(image, block.imageAlt|default('Aplikacja Atena Fit na telefonie'), null, null, false, '(max-width: 840px) 100vw, 46vw') }}
+                {{ shopro_picture(image, block.imageAlt is defined ? block.imageAlt : 'Aplikacja Atena Fit na telefonie', null, null, false, '(max-width: 840px) 100vw, 46vw') }}
             {% endif %}
         </div>
     </div>

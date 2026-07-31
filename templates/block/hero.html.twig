@@ -13,12 +13,12 @@
         <img class="atena-hero__image" src="{{ hero_image }}" alt="" aria-hidden="true" loading="eager" fetchpriority="high" decoding="async">
     {% endif %}
     <div class="atena-container atena-hero__content">
-        <p class="atena-kicker">{{ block.eyebrow|default('Atena Fit') }}</p>
+        <p class="atena-kicker">{{ block.eyebrow is defined ? block.eyebrow : 'Atena Fit' }}</p>
         <h1>
-            <span>{{ legacy_hero ? 'Twoja' : block.headingLineOne|default('Twoja') }}</span>
-            <span>{{ legacy_hero ? 'przestrzeń.' : block.headingLineTwo|default('przestrzeń.') }}</span>
-            <em>{{ legacy_hero ? 'Twój trening.' : block.accent|default('Twój trening.') }}</em>
-            <b>{{ legacy_hero ? 'Twój cel.' : block.blueAccent|default('Twój cel.') }}</b>
+            <span>{{ legacy_hero ? 'Twoja' : (block.headingLineOne is defined ? block.headingLineOne : 'Twoja') }}</span>
+            <span>{{ legacy_hero ? 'przestrzeń.' : (block.headingLineTwo is defined ? block.headingLineTwo : 'przestrzeń.') }}</span>
+            <em>{{ legacy_hero ? 'Twój trening.' : (block.accent is defined ? block.accent : 'Twój trening.') }}</em>
+            <b>{{ legacy_hero ? 'Twój cel.' : (block.blueAccent is defined ? block.blueAccent : 'Twój cel.') }}</b>
         </h1>
         <div class="atena-hero__copy">{{ block.content|default('')|raw }}</div>
         <div class="atena-actions">

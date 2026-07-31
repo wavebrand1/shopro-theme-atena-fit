@@ -18,8 +18,8 @@
     <div class="atena-container">
         <header class="atena-pricing__heading">
             <div>
-                <h2>{{ block.heading|default('Cennik') }}</h2>
-                <p>{{ block.intro|default('Prosto i transparentnie. Bez ukrytych kosztów.') }}</p>
+                <h2>{{ block.heading is defined ? block.heading : 'Cennik' }}</h2>
+                <p>{{ block.intro is defined ? block.intro : 'Prosto i transparentnie. Bez ukrytych kosztów.' }}</p>
             </div>
             {# Optional secondary link: clearing either field hides it. #}
             {% set all_plans_url = block.allPlansUrl is defined ? block.allPlansUrl : '#kontakt' %}
@@ -61,7 +61,8 @@
         <div class="atena-pricing__benefits">
             {% for index in 0..3 %}
                 {% set field = 'benefit' ~ (index + 1) %}
-                <div><span class="atena-pricing__benefit-icon" aria-hidden="true">{% if index == 0 %}◇{% elseif index == 1 %}✦{% elseif index == 2 %}♧{% else %}◴{% endif %}</span>{{ attribute(block, field)|default(default_benefits[index]) }}</div>
+                {% set benefit_text = attribute(block, field) is defined ? attribute(block, field) : default_benefits[index] %}
+                {% if benefit_text|trim %}<div><span class="atena-pricing__benefit-icon" aria-hidden="true">{% if index == 0 %}◇{% elseif index == 1 %}✦{% elseif index == 2 %}♧{% else %}◴{% endif %}</span>{{ benefit_text }}</div>{% endif %}
             {% endfor %}
         </div>
     </div>
