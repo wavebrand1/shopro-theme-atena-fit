@@ -1,15 +1,18 @@
 {% set default_plans = [
-    {name: 'Wejście jednorazowe', price: '25 zł', description: 'Jednorazowe wejście na siłownię', url: '#kontakt', buttonLabel: 'Kup teraz', icon: 'ticket'},
-    {name: 'Karnet 1 miesiąc', price: '99 zł / m-c', description: 'Nielimitowany dostęp przez 30 dni', url: '#kontakt', buttonLabel: 'Kup teraz', badge: 'Najpopularniejszy', icon: 'calendar'},
-    {name: 'Karnet 3 miesiące', price: '89 zł / m-c', description: 'Nielimitowany dostęp przez 90 dni', url: '#kontakt', buttonLabel: 'Kup teraz', icon: 'calendar'},
-    {name: 'Karnet 12 miesięcy', price: '69 zł / m-c', description: 'Nielimitowany dostęp przez 12 miesięcy', url: '#kontakt', buttonLabel: 'Kup teraz', icon: 'calendar'}
+    {name: 'Wejście jednorazowe', price: '25 zł', description: 'Jednorazowe wejście na siłownię', url: '#kontakt', buttonLabel: 'Kup teraz', icon: 'ticket', showButton: true},
+    {name: 'Karnet 1 miesiąc', price: '99 zł / m-c', description: 'Nielimitowany dostęp przez 30 dni', url: '#kontakt', buttonLabel: 'Kup teraz', badge: 'Najpopularniejszy', icon: 'calendar', showButton: true},
+    {name: 'Karnet 3 miesiące', price: '89 zł / m-c', description: 'Nielimitowany dostęp przez 90 dni', url: '#kontakt', buttonLabel: 'Kup teraz', icon: 'calendar', showButton: true},
+    {name: 'Karnet 12 miesięcy', price: '69 zł / m-c', description: 'Nielimitowany dostęp przez 12 miesięcy', url: '#kontakt', buttonLabel: 'Kup teraz', icon: 'calendar', showButton: true}
 ] %}
 {% set stored_plans = block.items|default([]) %}
 {% set plans = [] %}
-{% for default_plan in default_plans %}
-    {% set stored_plan = stored_plans[loop.index0]|default({}) %}
-    {% set plans = plans|merge([default_plan|merge(stored_plan)]) %}
-{% endfor %}
+{% if stored_plans is empty %}
+    {% set plans = default_plans %}
+{% else %}
+    {% for stored_plan in stored_plans %}
+        {% set plans = plans|merge([(default_plans[loop.index0]|default({icon: 'calendar', url: '#kontakt', buttonLabel: 'Kup teraz', showButton: true}))|merge(stored_plan)]) %}
+    {% endfor %}
+{% endif %}
 
 <section class="atena-section atena-pricing" id="{{ block.anchor|default('cennik') }}">
     <div class="atena-container">
@@ -36,7 +39,7 @@
                             <rect x="6" y="7" width="20" height="19" rx="3" stroke="currentColor" stroke-width="1.8"/><path d="M10 5v5m12-5v5M9 14h14m-10 5h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
                         {% endif %}
                     </svg>
-                    <a href="{{ plan.url|default('#') }}">{{ plan.buttonLabel|default(block.buttonLabel|default('Kup teraz')) }}</a>
+                    {% if plan.showButton|default(true) %}<a href="{{ plan.url|default('#') }}">{{ plan.buttonLabel|default(block.buttonLabel|default('Kup teraz')) }}</a>{% endif %}
                 </article>
             {% endfor %}
         </div>
