@@ -46,7 +46,11 @@
                             <rect x="6" y="7" width="20" height="19" rx="3" stroke="currentColor" stroke-width="1.8"/><path d="M10 5v5m12-5v5M9 14h14m-10 5h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
                         {% endif %}
                     </svg>
-                    {% if plan.showButton|default(true) %}<a href="{{ plan.url|default('#') }}">{{ plan.buttonLabel|default(block.buttonLabel|default('Kup teraz')) }}</a>{% endif %}
+                    {% set plan_url = plan.url is defined ? plan.url : '#' %}
+                    {% set plan_button_label = plan.buttonLabel is defined ? plan.buttonLabel : block.buttonLabel|default('Kup teraz') %}
+                    {% if plan.showButton|default(true) and plan_url|trim and plan_button_label|trim %}
+                        <a href="{{ plan_url }}">{{ plan_button_label }}</a>
+                    {% endif %}
                 </article>
             {% endfor %}
         </div>
