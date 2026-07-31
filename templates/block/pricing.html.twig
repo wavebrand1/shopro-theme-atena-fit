@@ -21,7 +21,12 @@
                 <h2>{{ block.heading|default('Cennik') }}</h2>
                 <p>{{ block.intro|default('Prosto i transparentnie. Bez ukrytych kosztów.') }}</p>
             </div>
-            <a class="atena-pricing__all" href="{{ block.allPlansUrl|default('#kontakt') }}">{{ block.allPlansLabel|default('Zobacz wszystkie opcje') }} <span aria-hidden="true">›</span></a>
+            {# Optional secondary link: clearing either field hides it. #}
+            {% set all_plans_url = block.allPlansUrl is defined ? block.allPlansUrl : '#kontakt' %}
+            {% set all_plans_label = block.allPlansLabel is defined ? block.allPlansLabel : 'Zobacz wszystkie opcje' %}
+            {% if all_plans_url|trim and all_plans_label|trim %}
+                <a class="atena-pricing__all" href="{{ all_plans_url }}">{{ all_plans_label }} <span aria-hidden="true">›</span></a>
+            {% endif %}
         </header>
 
         {% set pricing_columns = block.columns|default(4)|round(0, 'floor') %}
