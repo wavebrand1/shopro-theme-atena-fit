@@ -28,7 +28,7 @@ window.ShoproThemeComponents = {
         label: 'Cennik Atena Fit', itemLabel: 'karnet',
         fields: [
             {label: 'Kotwica sekcji', key: 'anchor', type: 'text'}, {label: 'Nagłówek', key: 'heading', type: 'text'}, {label: 'Opis pod nagłówkiem', key: 'intro', type: 'text'},
-            {label: 'Tekst linku po prawej', key: 'allPlansLabel', type: 'text'}, {label: 'Adres linku po prawej', key: 'allPlansUrl', type: 'text'}, {label: 'Domyślny tekst przycisku', key: 'buttonLabel', type: 'text'},
+            {label: 'Tekst linku po prawej', key: 'allPlansLabel', type: 'text'}, {label: 'Adres linku po prawej', key: 'allPlansUrl', type: 'text'}, {label: 'Liczba kolumn', key: 'columns', type: 'select', options: [['1 kolumna', 1], ['2 kolumny', 2], ['3 kolumny', 3], ['4 kolumny', 4], ['5 kolumn', 5], ['6 kolumn', 6]]}, {label: 'Domyślny tekst przycisku', key: 'buttonLabel', type: 'text'},
             {label: 'Korzyść 1', key: 'benefit1', type: 'text'}, {label: 'Korzyść 2', key: 'benefit2', type: 'text'}, {label: 'Korzyść 3', key: 'benefit3', type: 'text'}, {label: 'Korzyść 4', key: 'benefit4', type: 'text'}
         ],
         itemFields: [{label: 'Nazwa', key: 'name', type: 'text'}, {label: 'Cena', key: 'price', type: 'text'}, {label: 'Opis', key: 'description', type: 'textarea'}, {label: 'Ikona', key: 'icon', type: 'select', options: [['Bilet wejścia', 'ticket'], ['Kalendarz karnetu', 'calendar']]}, {label: 'Tekst przycisku', key: 'buttonLabel', type: 'text'}, {label: 'Adres przycisku', key: 'url', type: 'text'}, {label: 'Wyróżnienie', key: 'badge', type: 'text'}, {label: 'Pokaż przycisk „Kup teraz”', key: 'showButton', type: 'checkbox'}],
@@ -40,6 +40,7 @@ window.ShoproThemeComponents = {
                 {name: 'Karnet 12 miesięcy', price: '69 zł / m-c', description: 'Nielimitowany dostęp przez 12 miesięcy', url: '#kontakt', buttonLabel: 'Kup teraz', icon: 'calendar', showButton: true}
             ];
             data.items = Array.isArray(data.items) ? data.items : [];
+            data.columns = Math.min(6, Math.max(1, Number(data.columns || 4)));
             if (!data.items.length) data.items = defaults.map(plan => ({...plan}));
             else data.items = data.items.map((plan, index) => ({...(defaults[index] || {icon: 'calendar', url: '#kontakt', buttonLabel: 'Kup teraz', showButton: true}), ...plan}));
         },

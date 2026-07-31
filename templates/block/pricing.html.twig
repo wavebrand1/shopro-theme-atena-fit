@@ -24,7 +24,9 @@
             <a class="atena-pricing__all" href="{{ block.allPlansUrl|default('#kontakt') }}">{{ block.allPlansLabel|default('Zobacz wszystkie opcje') }} <span aria-hidden="true">›</span></a>
         </header>
 
-        <div class="atena-pricing__grid">
+        {% set pricing_columns = block.columns|default(4)|round(0, 'floor') %}
+        {% set pricing_columns = pricing_columns < 1 ? 1 : (pricing_columns > 6 ? 6 : pricing_columns) %}
+        <div class="atena-pricing__grid atena-pricing__grid--{{ pricing_columns }}">
             {% for plan in plans %}
                 {% set icon = plan.icon|default('calendar') %}
                 <article class="atena-plan{{ plan.badge|default ? ' atena-plan--featured' : '' }}">
