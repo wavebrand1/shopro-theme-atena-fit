@@ -4,6 +4,7 @@
     {{ parent() }}
     <link rel="preload" href="{{ asset('bundles/shoprothemeatenafit/fonts/Ethnocentric-Regular.otf') }}" as="font" type="font/otf" crossorigin>
     <link rel="preload" href="{{ asset('bundles/shoprothemeatenafit/fonts/montserrat-latin-ext.woff2') }}" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="{{ asset('bundles/shoprothemeatenafit/atena-hero-default.webp') }}" as="image" type="image/webp" fetchpriority="high">
     <link rel="stylesheet" href="{{ asset('bundles/shoprothemeatenafit/hero.css') }}">
     {# Critical theme surface: kept in the Atena layout so it is always emitted
        after all generic Shopro styles, independently of the static asset cache. #}

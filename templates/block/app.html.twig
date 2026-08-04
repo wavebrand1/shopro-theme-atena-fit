@@ -1,8 +1,8 @@
 {% set default_screens = [
-    { image: asset('bundles/shoprothemeatenafit/atena-app-screen-membership-default.png'), alt: 'Aplikacja Atena Fit — moje karnety' },
-    { image: asset('bundles/shoprothemeatenafit/atena-app-screen-entry-default.png'), alt: 'Aplikacja Atena Fit — mobilny kod wejścia' },
-    { image: asset('bundles/shoprothemeatenafit/atena-app-screen-shop-default.png'), alt: 'Aplikacja Atena Fit — sklep karnetów' },
-    { image: asset('bundles/shoprothemeatenafit/atena-app-screen-statistics-default.png'), alt: 'Aplikacja Atena Fit — statystyki aktywności' }
+    { image: asset('bundles/shoprothemeatenafit/atena-app-screen-membership-default.webp'), alt: 'Aplikacja Atena Fit — moje karnety' },
+    { image: asset('bundles/shoprothemeatenafit/atena-app-screen-entry-default.webp'), alt: 'Aplikacja Atena Fit — mobilny kod wejścia' },
+    { image: asset('bundles/shoprothemeatenafit/atena-app-screen-shop-default.webp'), alt: 'Aplikacja Atena Fit — sklep karnetów' },
+    { image: asset('bundles/shoprothemeatenafit/atena-app-screen-statistics-default.webp'), alt: 'Aplikacja Atena Fit — statystyki aktywności' }
 ] %}
 {% set screens = block.items|default([]) %}
 {% set default_benefits = [
@@ -57,7 +57,7 @@
                                 {{ shopro_picture(image, screen.alt is defined ? screen.alt : fallback.alt, null, null, false, '(max-width: 620px) 42vw, 18vw') }}
                             {% endif %}
                         </div>
-                        <img class="atena-phone__frame" src="{{ asset('bundles/shoprothemeatenafit/atena-phone-frame.png') }}" alt="" aria-hidden="true">
+                        <img class="atena-phone__frame" src="{{ asset('bundles/shoprothemeatenafit/atena-phone-frame.webp') }}" alt="" aria-hidden="true">
                     </div>
                 </figure>
             {% endfor %}
