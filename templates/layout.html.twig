@@ -1,7 +1,9 @@
 {% extends 'cms/layout_base.html.twig' %}
 
 {% block stylesheets %}
-    {{ parent() }}
+    {# Atena owns its complete public presentation. Loading the generic Shopro
+       stylesheet here also shipped the administration and default-theme CSS. #}
+    <link rel="stylesheet" href="{{ asset('bundles/shoprothemeatenafit/theme.css') }}?v=1.0.5">
     <link rel="preload" href="{{ asset('bundles/shoprothemeatenafit/fonts/Ethnocentric-Regular.otf') }}" as="font" type="font/otf" crossorigin>
     <link rel="preload" href="{{ asset('bundles/shoprothemeatenafit/fonts/montserrat-latin-ext.woff2') }}" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="{{ asset('bundles/shoprothemeatenafit/atena-hero-default.webp') }}" as="image" type="image/webp" fetchpriority="high">
