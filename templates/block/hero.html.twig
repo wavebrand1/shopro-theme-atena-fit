@@ -57,5 +57,9 @@
             </div>
         {% endif %}
     </div>
-    <img class="atena-hero__mark" src="{{ watermark }}" alt="" aria-hidden="true">
+    {% if watermark starts with '/uploads/' %}
+        <span class="atena-hero__mark" aria-hidden="true">{{ shopro_picture(watermark, '', null, null, true, '(max-width: 720px) 235px, 352px') }}</span>
+    {% else %}
+        <img class="atena-hero__mark" src="{{ watermark }}" alt="" aria-hidden="true">
+    {% endif %}
 </section>

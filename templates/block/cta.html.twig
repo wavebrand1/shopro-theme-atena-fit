@@ -11,7 +11,11 @@
             {{ shopro_picture(image, '', null, null, false, '100vw') }}
         {% endif %}
     </div>
-    <img class="atena-cta__watermark" src="{{ watermark }}" alt="" aria-hidden="true">
+    {% if watermark starts with '/uploads/' %}
+        <span class="atena-cta__watermark" aria-hidden="true">{{ shopro_picture(watermark, '', null, null, false, '205px') }}</span>
+    {% else %}
+        <img class="atena-cta__watermark" src="{{ watermark }}" alt="" aria-hidden="true" loading="lazy" decoding="async">
+    {% endif %}
     <div class="atena-container atena-cta__inner">
         <div class="atena-cta__content">
             <h2>{{ block.heading is defined ? block.heading : 'Gotowy na zmianę?' }}</h2>
