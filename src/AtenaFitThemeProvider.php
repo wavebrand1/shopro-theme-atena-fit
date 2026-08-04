@@ -12,7 +12,7 @@ final class AtenaFitThemeProvider implements ThemeProvider
     public function themes(): iterable
     {
         yield new ThemeDefinition(
-            code: 'atena_fit', name: 'Atena Fit', version: '1.0.3',
+            code: 'atena_fit', name: 'Atena Fit', version: '1.0.4',
             variants: [
                 'signature' => ['pl' => 'Atena — czerwień i granat', 'en' => 'Atena — red and navy'],
                 'contrast' => ['pl' => 'Atena — wysoki kontrast', 'en' => 'Atena — high contrast'],
@@ -20,8 +20,8 @@ final class AtenaFitThemeProvider implements ThemeProvider
             // Keep the package stylesheet versioned independently from core
             // assets. Theme releases must never depend on the browser cache of
             // a previously installed version.
-            frontStylesheet: '/bundles/shoprothemeatenafit/theme.css?v=1.0.3',
-            frontJavascript: '/bundles/shoprothemeatenafit/theme.js?v=1.0.3',
+            frontStylesheet: '/bundles/shoprothemeatenafit/theme.css?v=1.0.4',
+            frontJavascript: '/bundles/shoprothemeatenafit/theme.js?v=1.0.4',
             builderJavascript: '/bundles/shoprothemeatenafit/page-builder.js',
             frontLayoutTemplate: '@ShoproThemeAtenaFit/layout.html.twig',
             settings: [
