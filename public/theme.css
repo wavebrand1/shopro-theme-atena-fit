@@ -2,6 +2,13 @@
 *,*::before,*::after { box-sizing:border-box; }
 body.front-theme--atena_fit { min-width:320px; min-height:100vh; margin:0; }
 body.front-theme--atena_fit main>section:not(:first-child),body.front-theme--atena_fit .atena-footer { content-visibility:auto; contain-intrinsic-size:auto 700px; }
+.front-theme--atena_fit .site-container { width:min(1180px,calc(100% - 40px)); margin-inline:auto; }
+.front-theme--atena_fit .builder-public-section--grid { padding:40px 0; }
+.front-theme--atena_fit .builder-public-section__columns { display:grid; gap:32px; }
+.front-theme--atena_fit .builder-public-section__column { min-width:0; }
+.front-theme--atena_fit .builder-public-section__column>.builder-rich-text { width:100%; padding-top:30px; padding-bottom:30px; }
+.front-theme--atena_fit .builder-public-section__column .site-container { width:100%; }
+@media(max-width:760px){.front-theme--atena_fit .site-container{width:min(100% - 30px,1180px)}.front-theme--atena_fit .builder-public-section__columns{grid-template-columns:1fr!important}}
 .cookie-consent { position:fixed; z-index:10000; left:50%; bottom:24px; transform:translateX(-50%); width:min(780px,calc(100% - 32px)); max-height:calc(100dvh - 48px); overflow-x:hidden; overflow-y:auto; overscroll-behavior:contain; padding:22px; border:1px solid var(--cookie-border); border-radius:var(--cookie-radius); background:var(--cookie-surface); color:var(--cookie-text); box-shadow:var(--cookie-shadow); }
 .cookie-consent[hidden] { display:none!important; }
 .cookie-consent strong { display:block; margin-bottom:4px; }
